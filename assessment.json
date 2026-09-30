@@ -1,0 +1,901 @@
+{
+  "title": "Conveyal Accessibility Conformance Report — INTERNAL DRAFT",
+  "product": {
+    "name": "Conveyal UI / Conveyal Analysis",
+    "version": "aa60ece30cea92775f42a0e4b35d80f04be7c2bd; local build 6kwCYVezKwd_VVcUldOAW",
+    "description": "Browser application for editing transportation scenarios and inspecting accessibility analysis results"
+  },
+  "author": {
+    "name": "",
+    "company_name": "Conveyal",
+    "email": ""
+  },
+  "vendor": {
+    "company_name": "Conveyal",
+    "email": ""
+  },
+  "evaluationDate": "2026-09-30",
+  "publicationDate": null,
+  "qualifiedReviewApproved": false,
+  "vendorApproved": false,
+  "distributionLicense": null,
+  "notes": "Internal engineering baseline only; do not submit as a completed ACR. Evaluated exclusively at http://localhost:3000 in local mode without authentication. Proposed-release, authentication, complete-process, documentation/training and human assistive-technology testing remain pending. No conformance claim. Report date in drafts is the engineering evaluation date, not a publication date.",
+  "evaluation_methods_used": "axe-core 4.13.0; Cypress 13.4.0 / Electron 114; local browser accessibility-tree inspection; limited keyboard checks; source review; 320 CSS-pixel viewport; dark-mode sample. No human VoiceOver, NVDA, JAWS or TalkBack evaluation.",
+  "criteria": [
+    {
+      "id": "1.1.1",
+      "name": "Non-text Content",
+      "level": "A",
+      "component": "web",
+      "rating": "partially-supports",
+      "approved": false,
+      "remarks": "A11Y-007: Inspect all map/chart equivalents and generated output; histogram distribution failure is confirmed.",
+      "evidence": ["evidence/regional-histogram-controls.json", "evidence/regional-histogram.json"],
+      "findings": ["A11Y-007"]
+    },
+    {
+      "id": "1.2.1",
+      "name": "Audio-only and Video-only (Prerecorded)",
+      "level": "A",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "No applicable media observed in sampled UI. Confirm documentation/training inventory.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "1.2.2",
+      "name": "Captions (Prerecorded)",
+      "level": "A",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "No applicable media observed in sampled UI. Confirm documentation/training inventory.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "1.2.3",
+      "name": "Audio Description or Media Alternative (Prerecorded)",
+      "level": "A",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "No applicable media observed in sampled UI. Confirm documentation/training inventory.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "1.2.4",
+      "name": "Captions (Live)",
+      "level": "AA",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "No applicable live media observed. Confirm delivered services and training.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "1.2.5",
+      "name": "Audio Description (Prerecorded)",
+      "level": "AA",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "No applicable media observed in sampled UI. Confirm documentation/training inventory.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "1.3.1",
+      "name": "Info and Relationships",
+      "level": "A",
+      "component": "web",
+      "rating": "partially-supports",
+      "approved": false,
+      "remarks": "A11Y-003: Inspect programmatic relationships, tables, groups, and chart equivalents; label association failures observed.",
+      "evidence": [
+        "evidence/aggregation-areas-populated.json",
+        "evidence/analysis.json",
+        "evidence/import-modifications.json",
+        "evidence/regional-histogram-controls.json",
+        "evidence/regional-histogram.json"
+      ],
+      "findings": ["A11Y-003"]
+    },
+    {
+      "id": "1.3.2",
+      "name": "Meaningful Sequence",
+      "level": "A",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Read map/sidebar/report content in DOM and screen-reader order.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "1.3.3",
+      "name": "Sensory Characteristics",
+      "level": "A",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Review spatial instructions, drawing tools, and sensory-only instructions.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "1.3.4",
+      "name": "Orientation",
+      "level": "AA",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Test portrait and landscape on the required mobile environments.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "1.3.5",
+      "name": "Identify Input Purpose",
+      "level": "AA",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Review relevant personal-information fields; authentication is excluded.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "1.4.1",
+      "name": "Use of Color",
+      "level": "A",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Inspect map legends, comparison series, status colors, and redundant cues.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "1.4.2",
+      "name": "Audio Control",
+      "level": "A",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "No autoplay audio observed; confirm full delivered-content inventory.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "1.4.3",
+      "name": "Contrast (Minimum)",
+      "level": "AA",
+      "component": "web",
+      "rating": "partially-supports",
+      "approved": false,
+      "remarks": "A11Y-004: Enabled text failures measured. Review inactive exceptions and every theme/state.",
+      "evidence": [
+        "evidence/analysis.json",
+        "evidence/home.json",
+        "evidence/import-modifications.json",
+        "evidence/project-share-menu.json",
+        "evidence/region-create.json"
+      ],
+      "findings": ["A11Y-004"]
+    },
+    {
+      "id": "1.4.4",
+      "name": "Resize text",
+      "level": "AA",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Human actual 200% text/browser resizing remains pending.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "1.4.5",
+      "name": "Images of Text",
+      "level": "AA",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Review logos, maps, reports, and any embedded images of text.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "1.4.10",
+      "name": "Reflow",
+      "level": "AA",
+      "component": "web",
+      "rating": "partially-supports",
+      "approved": false,
+      "remarks": "A11Y-005: 320 CSS-pixel form clipping confirmed. Actual 400% zoom and remaining routes need testing.",
+      "evidence": ["evidence/region-create-320px.json"],
+      "findings": ["A11Y-005"]
+    },
+    {
+      "id": "1.4.11",
+      "name": "Non-text Contrast",
+      "level": "AA",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Measure interactive boundaries, focus indicators, charts, and map overlays.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "1.4.12",
+      "name": "Text Spacing",
+      "level": "AA",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Apply WCAG spacing overrides and verify no content/function loss.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "1.4.13",
+      "name": "Content on Hover or Focus",
+      "level": "AA",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Test tooltip/popover dismissal, persistence, and hoverability.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "2.1.1",
+      "name": "Keyboard",
+      "level": "A",
+      "component": "web",
+      "rating": "partially-supports",
+      "approved": false,
+      "remarks": "A11Y-006, A11Y-008, A11Y-009: Polygon selection, feature inspection, and scrolling barriers observed. Complete remaining workflows without a pointer.",
+      "evidence": [
+        "evidence/adjust-speed-polygon-selection.json",
+        "evidence/adjust-speed.json",
+        "evidence/bundle-create.json",
+        "evidence/data-source-detail.json"
+      ],
+      "findings": ["A11Y-006", "A11Y-008", "A11Y-009"]
+    },
+    {
+      "id": "2.1.2",
+      "name": "No Keyboard Trap",
+      "level": "A",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Escape cancelled polygon drawing. Complete modal/menu/map keyboard-trap checks.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "2.1.4",
+      "name": "Character Key Shortcuts",
+      "level": "A",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Inventory character shortcuts and verify off/remap/focus-only behavior.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "2.2.1",
+      "name": "Timing Adjustable",
+      "level": "A",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Review job/session timing. Authentication/session-expiry testing is excluded.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "2.2.2",
+      "name": "Pause, Stop, Hide",
+      "level": "A",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Review loading animations, dynamic updates, and any timed or moving content.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "2.3.1",
+      "name": "Three Flashes or Below Threshold",
+      "level": "A",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Review flashes across loading, maps, errors, and media.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "2.4.1",
+      "name": "Bypass Blocks",
+      "level": "A",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Review ways to bypass repeated navigation; headings exist, no main landmark recorded.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "2.4.2",
+      "name": "Page Titled",
+      "level": "A",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Most sampled titles are Conveyal Analysis. Assess whether titles describe page purpose sufficiently.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "2.4.3",
+      "name": "Focus Order",
+      "level": "A",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Complete keyboard order, modal return focus, and route-change focus checks.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "2.4.4",
+      "name": "Link Purpose (In Context)",
+      "level": "A",
+      "component": "web",
+      "rating": "partially-supports",
+      "approved": false,
+      "remarks": "A11Y-002: Unnamed documentation links observed; assess all link purposes and contexts.",
+      "evidence": [
+        "evidence/analysis.json",
+        "evidence/bundle-create.json",
+        "evidence/projects.json",
+        "evidence/region-create.json"
+      ],
+      "findings": ["A11Y-002"]
+    },
+    {
+      "id": "2.4.5",
+      "name": "Multiple Ways",
+      "level": "AA",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Review navigation and other ways to locate eligible pages.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "2.4.6",
+      "name": "Headings and Labels",
+      "level": "AA",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Review heading hierarchy and descriptive labels across all workflows.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "2.4.7",
+      "name": "Focus Visible",
+      "level": "AA",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Inspect visible focus on sidebar, tabs, maps, forms, and overlays.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "2.5.1",
+      "name": "Pointer Gestures",
+      "level": "A",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Review gesture-dependent map operations and equivalent simple-pointer paths.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "2.5.2",
+      "name": "Pointer Cancellation",
+      "level": "A",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Review cancellation for dragging/drawing and accidental activation.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "2.5.3",
+      "name": "Label in Name",
+      "level": "A",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Compare visible labels with accessible names; automated passes are partial evidence.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "2.5.4",
+      "name": "Motion Actuation",
+      "level": "A",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "No motion-input feature observed. Confirm full input-method inventory.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "3.1.1",
+      "name": "Language of Page",
+      "level": "A",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Rendered document lang=en in sampled states. Review remaining delivered surfaces.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "3.1.2",
+      "name": "Language of Parts",
+      "level": "AA",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Identify language changes in product and user-generated content.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "3.2.1",
+      "name": "On Focus",
+      "level": "A",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Review all focus-triggered context changes and overlays.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "3.2.2",
+      "name": "On Input",
+      "level": "A",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Review select/input-triggered navigation and announcements.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "3.2.3",
+      "name": "Consistent Navigation",
+      "level": "AA",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Shared sidebar observed; review order across roles and workflows.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "3.2.4",
+      "name": "Consistent Identification",
+      "level": "AA",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Review control naming and identification across both map systems.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "3.3.1",
+      "name": "Error Identification",
+      "level": "A",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Invalid North=999 exposes aria-invalid; error-text/announcement review remains pending.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "3.3.2",
+      "name": "Labels or Instructions",
+      "level": "A",
+      "component": "web",
+      "rating": "partially-supports",
+      "approved": false,
+      "remarks": "A11Y-003: Unlabeled input controls observed. Review remaining form instructions and errors.",
+      "evidence": [
+        "evidence/aggregation-areas-populated.json",
+        "evidence/analysis.json",
+        "evidence/import-modifications.json",
+        "evidence/regional-histogram-controls.json",
+        "evidence/regional-histogram.json"
+      ],
+      "findings": ["A11Y-003"]
+    },
+    {
+      "id": "3.3.3",
+      "name": "Error Suggestion",
+      "level": "AA",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Test validation and corrective suggestions using isolated fixtures.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "3.3.4",
+      "name": "Error Prevention (Legal, Financial, Data)",
+      "level": "AA",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Test reversible/confirmed delete and data-modification processes on isolated fixtures.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "4.1.1",
+      "name": "Parsing",
+      "level": "A",
+      "component": "web",
+      "rating": "supports",
+      "approved": false,
+      "remarks": "ITI template directs Supports for WCAG 2.1 under the published errata; removed in WCAG 2.2.",
+      "evidence": [],
+      "findings": []
+    },
+    {
+      "id": "4.1.2",
+      "name": "Name, Role, Value",
+      "level": "A",
+      "component": "web",
+      "rating": "partially-supports",
+      "approved": false,
+      "remarks": "A11Y-001, A11Y-002, A11Y-003: Unnamed controls confirmed. Raw ARIA findings also require semantic/AT review.",
+      "evidence": [
+        "evidence/aggregation-areas-populated.json",
+        "evidence/analysis.json",
+        "evidence/bundle-create.json",
+        "evidence/import-modifications.json",
+        "evidence/projects.json",
+        "evidence/region-create.json",
+        "evidence/regional-completed.json",
+        "evidence/regional-histogram-controls.json",
+        "evidence/regional-histogram.json"
+      ],
+      "findings": ["A11Y-001", "A11Y-002", "A11Y-003"]
+    },
+    {
+      "id": "4.1.3",
+      "name": "Status Messages",
+      "level": "AA",
+      "component": "web",
+      "rating": null,
+      "approved": false,
+      "remarks": "Human screen-reader testing of progress, errors, toasts, and results is pending.",
+      "evidence": [],
+      "findings": []
+    }
+  ],
+  "wcag22GapAssessment": [
+    {
+      "id": "2.4.11",
+      "name": "Focus Not Obscured (Minimum)",
+      "level": "AA",
+      "version": "2.2 addition",
+      "status": "Evidence gap",
+      "findings": "",
+      "evidenceOrNextCheck": "Check focused controls under toolbars, overlays, and magnification."
+    },
+    {
+      "id": "2.5.7",
+      "name": "Dragging Movements",
+      "level": "AA",
+      "version": "2.2 addition",
+      "status": "Evidence gap",
+      "findings": "",
+      "evidenceOrNextCheck": "Review drag-only map operations and equivalent single-pointer actions."
+    },
+    {
+      "id": "2.5.8",
+      "name": "Target Size (Minimum)",
+      "level": "AA",
+      "version": "2.2 addition",
+      "status": "Evidence gap",
+      "findings": "",
+      "evidenceOrNextCheck": "Measure rendered target size/spacing; apply defined exceptions before classifying failures."
+    },
+    {
+      "id": "3.2.6",
+      "name": "Consistent Help",
+      "level": "A",
+      "version": "2.2 addition",
+      "status": "Evidence gap",
+      "findings": "",
+      "evidenceOrNextCheck": "Review placement of repeated help mechanisms across delivered pages."
+    },
+    {
+      "id": "3.3.7",
+      "name": "Redundant Entry",
+      "level": "A",
+      "version": "2.2 addition",
+      "status": "Evidence gap",
+      "findings": "",
+      "evidenceOrNextCheck": "Review repeated entry within complete create/edit/upload processes."
+    },
+    {
+      "id": "3.3.8",
+      "name": "Accessible Authentication (Minimum)",
+      "level": "AA",
+      "version": "2.2 addition",
+      "status": "Evidence gap",
+      "findings": "",
+      "evidenceOrNextCheck": "Authentication absent in local mode; follow-up required."
+    }
+  ],
+  "authorQualifications": null,
+  "latestAudit": {
+    "runId": "acr-ebc598bf-5867-4ba3-89fe-ba7eac3925d4",
+    "timestamp": "2026-10-01T03:01:00.638Z",
+    "baseURL": "http://localhost:3000",
+    "target": {
+      "baseURL": "http://localhost:3000",
+      "backendURL": "http://localhost:7070/api",
+      "local": true,
+      "disposable": true,
+      "timeouts": {
+        "upload": 240000,
+        "interactive": 300000,
+        "regional": 600000,
+        "action": 30000
+      },
+      "workerVersion": "v7.6",
+      "trace": false
+    },
+    "fixtureManifest": {
+      "source": "conveyal/ui cypress/fixtures",
+      "files": {
+        "analysis-settings.ts": "eb42c4185e101a4cfbf74732136dc4fa23ece46ce0f028d0f0fa3c6e7bf64758",
+        "regions/scratch-results.ts": "a91fa967881d1b671a9217521569adb39cd5d943de604b97538388bce981c6f5",
+        "regions/scratch.ts": "0b3df64d66e03b5da3d3ff376e5979b0c699cbc9215dceff5eeed5812e6a6e42",
+        "regions/.gitignore": "515b0da19927d2aa0767dc2401f3f965e992c8d92d9454846f796acf05cae24c",
+        "regions/download.sh": "2895e01338adf8902810cd888a4e9be200b7ac3ef70d163e63d1dd5588a9c3d8",
+        "regions/portland/.gitignore": "928d0cdfeebd7af8afafa6688f59fe800e4923598ad2931bbee5341f3a2c8089",
+        "regions/portland/overpass-query.txt": "7503a6c2e58b6556d0104dbc98ed3dc8eb61c6c2f791ba13f38427a0d753a8c0",
+        "regions/nky/TANK-GTFS.zip": "eeab3242d6958828f0778ba6776f1accbfc4f8a2b838f022a58e2091c5e1774e",
+        "regions/nky/streets.osm.pbf": "dc1dee390e5b6896734ff2a5ca3ba9afff6bcf2671affb53eb909ddca918aec8",
+        "regions/nky/overpass-query.txt": "dd8d4d917f2e95757742151ad12d16cb92454160ad549d1f002950bb308c5dfd",
+        "regions/nky/import-routes.zip": "08cb4eb4414099df5402dcea99d8555a09629ecd4f84d07840679f152d2f6539",
+        "regions/nky/null-GTFS.zip": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+        "regions/nky/people.grid": "10249ed25c1934a05cb5c8bc186ebd5d203d78faed84352cf8d1a158ec489c36",
+        "regions/nky/hospitals.csv": "5a158f01b33aab742678f042751bd44e1fddb97d6f5e9e648a81abf161c38d1f",
+        "regions/nky/sports-pitches.csv": "865241adae4596376dd6d3ca8e84bed779b9a28d66d077b6e11ab01dafa9a196",
+        "regions/mcpherson/routes.zip": "45b17fc916a5636103cd762366cebd72c8cae957d9d6dd224926359dbf0a2f2f",
+        "regions/mcpherson/README.md": "60e54cd04fbe57b6513c1c0cfaedc2135d512117acb55bcbe97fe108e7321329",
+        "regions/mcpherson/.gitignore": "548ed71943105bace3aaa8bc304b90a48710477178c24ec7ad5b101e764ea071",
+        "regions/mcpherson/overpass-query.txt": "319b9cc477803bc43e8a60aa2f41074f4ad3e94a88256b072040a4bceb102964",
+        "regions/nky/block-groups/block-groups.dbf": "fd03f0323fc16b834ec3c0168f08f997d3fbfa03e3eead4c7d4cb4b1f1f572d2",
+        "regions/nky/block-groups/block-groups.shp": "c2c2f72c77571131428674f0ddcd02b1d73b0e354a8441dd745f13a68243d8b2",
+        "regions/nky/block-groups/block-groups.cpg": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824",
+        "regions/nky/block-groups/block-groups.shx": "49f286d8e7117d2e8b2a9181679d1652d74f9b403bd29cb46ccb8b48c000265a",
+        "regions/nky/block-groups/block-groups.prj": "a02a27b1d1982c8516d83398e85a3c8b1aef1713c13ef4d84d7bde17430c07c4",
+        "regions/nky/city-boundaries/cities.shx": "712efc620b0aca8ba064085da19d204fd35d58c4984b7b019d0155816e28a668",
+        "regions/nky/city-boundaries/cities.shp": "574a17e528ce62922c516d60894c546e5d6a650f9329f3092bf48660b9a11c8e",
+        "regions/nky/city-boundaries/cities.cpg": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824",
+        "regions/nky/city-boundaries/cities.dbf": "9c96997c1df388b3833f5a117f2a7aa1ffa88679081b5864fd2a072bfe4639f6",
+        "regions/nky/city-boundaries/cities.prj": "98aaf3d1c0ecadf1a424a4536de261c3daf4e373697cb86c40c43b989daf52eb",
+        "regions/nky/city-boundaries/cities.qpj": "1de411dcdeedce3219242306fc29bfa1d7fa08883e4ff6779baf798ec50d1657"
+      },
+      "settings": {
+        "bounds": {
+          "north": 39.1199,
+          "south": 38.9268,
+          "east": -84.3592,
+          "west": -84.706
+        },
+        "subset": {
+          "north": 39.116,
+          "south": 39.058,
+          "east": -84.454,
+          "west": -84.555
+        },
+        "date": "2020-07-20",
+        "fromLat": 39.0888,
+        "fromLon": -84.5106,
+        "accessModes": "WALK",
+        "directModes": "WALK",
+        "egressModes": "WALK",
+        "bikeSpeed": 4.166666666666667,
+        "bikeTrafficStress": 1,
+        "maxBikeTime": 20,
+        "transitModes": "BUS,TRAM,RAIL,SUBWAY,FERRY,CABLE_CAR,GONDOLA,FUNICULAR",
+        "fromTime": 25200,
+        "toTime": 32400,
+        "maxRides": 4,
+        "maxWalkTime": 20,
+        "monteCarloDraws": 200,
+        "percentiles": [5, 25, 50, 75, 95],
+        "walkSpeed": 1.3888888888888888,
+        "decayFunction": {
+          "type": "step",
+          "standardDeviationMinutes": 10,
+          "widthMinutes": 10
+        }
+      }
+    },
+    "buildId": "6kwCYVezKwd_VVcUldOAW",
+    "playwrightVersion": "1.63.0",
+    "axeVersion": "4.13.0",
+    "browser": {
+      "name": "chromium",
+      "version": "153.0.8010.12"
+    },
+    "fixtureHashes": {
+      "analysis-settings.ts": "eb42c4185e101a4cfbf74732136dc4fa23ece46ce0f028d0f0fa3c6e7bf64758",
+      "regions/.gitignore": "515b0da19927d2aa0767dc2401f3f965e992c8d92d9454846f796acf05cae24c",
+      "regions/download.sh": "2895e01338adf8902810cd888a4e9be200b7ac3ef70d163e63d1dd5588a9c3d8",
+      "regions/mcpherson/.gitignore": "548ed71943105bace3aaa8bc304b90a48710477178c24ec7ad5b101e764ea071",
+      "regions/mcpherson/README.md": "60e54cd04fbe57b6513c1c0cfaedc2135d512117acb55bcbe97fe108e7321329",
+      "regions/mcpherson/overpass-query.txt": "319b9cc477803bc43e8a60aa2f41074f4ad3e94a88256b072040a4bceb102964",
+      "regions/mcpherson/routes.zip": "45b17fc916a5636103cd762366cebd72c8cae957d9d6dd224926359dbf0a2f2f",
+      "regions/nky/TANK-GTFS.zip": "eeab3242d6958828f0778ba6776f1accbfc4f8a2b838f022a58e2091c5e1774e",
+      "regions/nky/block-groups/block-groups.cpg": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824",
+      "regions/nky/block-groups/block-groups.dbf": "fd03f0323fc16b834ec3c0168f08f997d3fbfa03e3eead4c7d4cb4b1f1f572d2",
+      "regions/nky/block-groups/block-groups.prj": "a02a27b1d1982c8516d83398e85a3c8b1aef1713c13ef4d84d7bde17430c07c4",
+      "regions/nky/block-groups/block-groups.shp": "c2c2f72c77571131428674f0ddcd02b1d73b0e354a8441dd745f13a68243d8b2",
+      "regions/nky/block-groups/block-groups.shx": "49f286d8e7117d2e8b2a9181679d1652d74f9b403bd29cb46ccb8b48c000265a",
+      "regions/nky/city-boundaries/cities.cpg": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824",
+      "regions/nky/city-boundaries/cities.dbf": "9c96997c1df388b3833f5a117f2a7aa1ffa88679081b5864fd2a072bfe4639f6",
+      "regions/nky/city-boundaries/cities.prj": "98aaf3d1c0ecadf1a424a4536de261c3daf4e373697cb86c40c43b989daf52eb",
+      "regions/nky/city-boundaries/cities.qpj": "1de411dcdeedce3219242306fc29bfa1d7fa08883e4ff6779baf798ec50d1657",
+      "regions/nky/city-boundaries/cities.shp": "574a17e528ce62922c516d60894c546e5d6a650f9329f3092bf48660b9a11c8e",
+      "regions/nky/city-boundaries/cities.shx": "712efc620b0aca8ba064085da19d204fd35d58c4984b7b019d0155816e28a668",
+      "regions/nky/hospitals.csv": "5a158f01b33aab742678f042751bd44e1fddb97d6f5e9e648a81abf161c38d1f",
+      "regions/nky/import-routes.zip": "08cb4eb4414099df5402dcea99d8555a09629ecd4f84d07840679f152d2f6539",
+      "regions/nky/null-GTFS.zip": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+      "regions/nky/overpass-query.txt": "dd8d4d917f2e95757742151ad12d16cb92454160ad549d1f002950bb308c5dfd",
+      "regions/nky/people.grid": "10249ed25c1934a05cb5c8bc186ebd5d203d78faed84352cf8d1a158ec489c36",
+      "regions/nky/sports-pitches.csv": "865241adae4596376dd6d3ca8e84bed779b9a28d66d077b6e11ab01dafa9a196",
+      "regions/nky/streets.osm.pbf": "dc1dee390e5b6896734ff2a5ca3ba9afff6bcf2671affb53eb909ddca918aec8",
+      "regions/portland/.gitignore": "928d0cdfeebd7af8afafa6688f59fe800e4923598ad2931bbee5341f3a2c8089",
+      "regions/portland/overpass-query.txt": "7503a6c2e58b6556d0104dbc98ed3dc8eb61c6c2f791ba13f38427a0d753a8c0",
+      "regions/scratch-results.ts": "a91fa967881d1b671a9217521569adb39cd5d943de604b97538388bce981c6f5",
+      "regions/scratch.ts": "0b3df64d66e03b5da3d3ff376e5979b0c699cbc9215dceff5eeed5812e6a6e42"
+    },
+    "states": [
+      "home",
+      "region-create",
+      "projects",
+      "region-settings",
+      "project-create",
+      "bundles",
+      "bundle-create",
+      "opportunities",
+      "opportunities-upload",
+      "data-sources",
+      "data-source-upload",
+      "aggregation-areas",
+      "activity",
+      "modifications",
+      "project-settings",
+      "import-shapefile",
+      "import-modifications",
+      "analysis",
+      "regional",
+      "status",
+      "session",
+      "region-create-invalid-north",
+      "region-create-320px",
+      "adjust-speed",
+      "adjust-speed-polygon-selection",
+      "scenarios",
+      "project-share-menu",
+      "project-report",
+      "project-report-modified",
+      "regional-completed",
+      "regional-histogram",
+      "regional-histogram-controls",
+      "regional-download-menu",
+      "data-source-detail",
+      "aggregation-areas-populated",
+      "modifications-dark"
+    ],
+    "keyboard": [
+      {
+        "name": "analysis-cutoff-keyboard",
+        "status": "pass"
+      },
+      {
+        "name": "analysis-percentile-keyboard",
+        "status": "pass"
+      },
+      {
+        "name": "bounds-input-alternative",
+        "status": "pass"
+      },
+      {
+        "name": "chart-text-alternative",
+        "status": "fail"
+      },
+      {
+        "name": "download-menu-keyboard",
+        "status": "pass"
+      },
+      {
+        "name": "feature-properties-keyboard",
+        "status": "fail"
+      },
+      {
+        "name": "form-error-association",
+        "status": "fail"
+      },
+      {
+        "name": "histogram-slider-keyboard",
+        "status": "pass"
+      },
+      {
+        "name": "legend-keyboard",
+        "status": "pass"
+      },
+      {
+        "name": "map-keyboard-pan-zoom",
+        "status": "pass"
+      },
+      {
+        "name": "map-zoom-buttons",
+        "status": "fail"
+      },
+      {
+        "name": "polygon-keyboard",
+        "status": "fail"
+      },
+      {
+        "name": "reflow-320px",
+        "status": "fail"
+      },
+      {
+        "name": "share-dialog-focus",
+        "status": "pass"
+      },
+      {
+        "name": "tabs-keyboard",
+        "status": "pass"
+      }
+    ],
+    "reviewed": false
+  }
+}

@@ -1,0 +1,75 @@
+# Criteria matrix
+
+**Historical assessment: September 30, 2026.** The assessment text below has not been reconciled with subsequent collections. See the [evidence index](evidence/README.md) for current collection details.
+
+All 50 WCAG 2.1 A/AA criteria are accounted for. Six additional WCAG 2.2 A/AA criteria follow separately.
+These are engineering evidence statuses, not VPAT conformance ratings. A criterion without an observed failure is not thereby a pass.
+
+| Criterion                                                  | Level | Evidence status  | Findings                     | Evidence or remaining check                                                                                             |
+| ---------------------------------------------------------- | ----- | ---------------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| 1.1.1 Non-text Content                                     | A     | Failure observed | A11Y-007                     | Inspect all map/chart equivalents and generated output; histogram distribution failure is confirmed.                    |
+| 1.2.1 Audio-only and Video-only (Prerecorded)              | A     | Evidence gap     | —                            | No applicable media observed in sampled UI. Confirm documentation/training inventory.                                   |
+| 1.2.2 Captions (Prerecorded)                               | A     | Evidence gap     | —                            | No applicable media observed in sampled UI. Confirm documentation/training inventory.                                   |
+| 1.2.3 Audio Description or Media Alternative (Prerecorded) | A     | Evidence gap     | —                            | No applicable media observed in sampled UI. Confirm documentation/training inventory.                                   |
+| 1.2.4 Captions (Live)                                      | AA    | Evidence gap     | —                            | No applicable live media observed. Confirm delivered services and training.                                             |
+| 1.2.5 Audio Description (Prerecorded)                      | AA    | Evidence gap     | —                            | No applicable media observed in sampled UI. Confirm documentation/training inventory.                                   |
+| 1.3.1 Info and Relationships                               | A     | Failure observed | A11Y-003                     | Inspect programmatic relationships, tables, groups, and chart equivalents; label association failures observed.         |
+| 1.3.2 Meaningful Sequence                                  | A     | Evidence gap     | —                            | Read map/sidebar/report content in DOM and screen-reader order.                                                         |
+| 1.3.3 Sensory Characteristics                              | A     | Evidence gap     | —                            | Review spatial instructions, drawing tools, and sensory-only instructions.                                              |
+| 1.3.4 Orientation                                          | AA    | Evidence gap     | —                            | Test portrait and landscape on the required mobile environments.                                                        |
+| 1.3.5 Identify Input Purpose                               | AA    | Evidence gap     | —                            | Review relevant personal-information fields; authentication is excluded.                                                |
+| 1.4.1 Use of Color                                         | A     | Evidence gap     | —                            | Inspect map legends, comparison series, status colors, and redundant cues.                                              |
+| 1.4.2 Audio Control                                        | A     | Evidence gap     | —                            | No autoplay audio observed; confirm full delivered-content inventory.                                                   |
+| 1.4.3 Contrast (Minimum)                                   | AA    | Failure observed | A11Y-004                     | Enabled text failures measured. Review inactive exceptions and every theme/state.                                       |
+| 1.4.4 Resize text                                          | AA    | Evidence gap     | —                            | Human actual 200% text/browser resizing remains pending.                                                                |
+| 1.4.5 Images of Text                                       | AA    | Evidence gap     | —                            | Review logos, maps, reports, and any embedded images of text.                                                           |
+| 1.4.10 Reflow                                              | AA    | Failure observed | A11Y-005                     | 320 CSS-pixel form clipping confirmed. Actual 400% zoom and remaining routes need testing.                              |
+| 1.4.11 Non-text Contrast                                   | AA    | Evidence gap     | —                            | Measure interactive boundaries, focus indicators, charts, and map overlays.                                             |
+| 1.4.12 Text Spacing                                        | AA    | Evidence gap     | —                            | Apply WCAG spacing overrides and verify no content/function loss.                                                       |
+| 1.4.13 Content on Hover or Focus                           | AA    | Evidence gap     | —                            | Test tooltip/popover dismissal, persistence, and hoverability.                                                          |
+| 2.1.1 Keyboard                                             | A     | Failure observed | A11Y-006, A11Y-008, A11Y-009 | Polygon selection, feature inspection, and scrolling barriers observed. Complete remaining workflows without a pointer. |
+| 2.1.2 No Keyboard Trap                                     | A     | Partial evidence | —                            | Escape cancelled polygon drawing. Complete modal/menu/map keyboard-trap checks.                                         |
+| 2.1.4 Character Key Shortcuts                              | A     | Evidence gap     | —                            | Inventory character shortcuts and verify off/remap/focus-only behavior.                                                 |
+| 2.2.1 Timing Adjustable                                    | A     | Evidence gap     | —                            | Review job/session timing. Authentication/session-expiry testing is excluded.                                           |
+| 2.2.2 Pause, Stop, Hide                                    | A     | Evidence gap     | —                            | Review loading animations, dynamic updates, and any timed or moving content.                                            |
+| 2.3.1 Three Flashes or Below Threshold                     | A     | Evidence gap     | —                            | Review flashes across loading, maps, errors, and media.                                                                 |
+| 2.4.1 Bypass Blocks                                        | A     | Evidence gap     | —                            | Review ways to bypass repeated navigation; headings exist, no main landmark recorded.                                   |
+| 2.4.2 Page Titled                                          | A     | Evidence gap     | —                            | Most sampled titles are Conveyal Analysis. Assess whether titles describe page purpose sufficiently.                    |
+| 2.4.3 Focus Order                                          | A     | Evidence gap     | —                            | Complete keyboard order, modal return focus, and route-change focus checks.                                             |
+| 2.4.4 Link Purpose (In Context)                            | A     | Failure observed | A11Y-002                     | Unnamed documentation links observed; assess all link purposes and contexts.                                            |
+| 2.4.5 Multiple Ways                                        | AA    | Evidence gap     | —                            | Review navigation and other ways to locate eligible pages.                                                              |
+| 2.4.6 Headings and Labels                                  | AA    | Evidence gap     | —                            | Review heading hierarchy and descriptive labels across all workflows.                                                   |
+| 2.4.7 Focus Visible                                        | AA    | Evidence gap     | —                            | Inspect visible focus on sidebar, tabs, maps, forms, and overlays.                                                      |
+| 2.5.1 Pointer Gestures                                     | A     | Evidence gap     | —                            | Review gesture-dependent map operations and equivalent simple-pointer paths.                                            |
+| 2.5.2 Pointer Cancellation                                 | A     | Evidence gap     | —                            | Review cancellation for dragging/drawing and accidental activation.                                                     |
+| 2.5.3 Label in Name                                        | A     | Evidence gap     | —                            | Compare visible labels with accessible names; automated passes are partial evidence.                                    |
+| 2.5.4 Motion Actuation                                     | A     | Evidence gap     | —                            | No motion-input feature observed. Confirm full input-method inventory.                                                  |
+| 3.1.1 Language of Page                                     | A     | Partial evidence | —                            | Rendered document lang=en in sampled states. Review remaining delivered surfaces.                                       |
+| 3.1.2 Language of Parts                                    | AA    | Evidence gap     | —                            | Identify language changes in product and user-generated content.                                                        |
+| 3.2.1 On Focus                                             | A     | Evidence gap     | —                            | Review all focus-triggered context changes and overlays.                                                                |
+| 3.2.2 On Input                                             | A     | Evidence gap     | —                            | Review select/input-triggered navigation and announcements.                                                             |
+| 3.2.3 Consistent Navigation                                | AA    | Partial evidence | —                            | Shared sidebar observed; review order across roles and workflows.                                                       |
+| 3.2.4 Consistent Identification                            | AA    | Evidence gap     | —                            | Review control naming and identification across both map systems.                                                       |
+| 3.3.1 Error Identification                                 | A     | Partial evidence | —                            | Invalid North=999 exposes aria-invalid; error-text/announcement review remains pending.                                 |
+| 3.3.2 Labels or Instructions                               | A     | Failure observed | A11Y-003                     | Unlabeled input controls observed. Review remaining form instructions and errors.                                       |
+| 3.3.3 Error Suggestion                                     | AA    | Evidence gap     | —                            | Test validation and corrective suggestions using isolated fixtures.                                                     |
+| 3.3.4 Error Prevention (Legal, Financial, Data)            | AA    | Evidence gap     | —                            | Test reversible/confirmed delete and data-modification processes on isolated fixtures.                                  |
+| 4.1.1 Parsing                                              | A     | Template errata  | —                            | ITI template directs Supports for WCAG 2.1 under the published errata; removed in WCAG 2.2.                             |
+| 4.1.2 Name, Role, Value                                    | A     | Failure observed | A11Y-001, A11Y-002, A11Y-003 | Unnamed controls confirmed. Raw ARIA findings also require semantic/AT review.                                          |
+| 4.1.3 Status Messages                                      | AA    | Evidence gap     | —                            | Human screen-reader testing of progress, errors, toasts, and results is pending.                                        |
+
+## Additional WCAG 2.2 criteria
+
+| Criterion                                 | Level | Status       | Remaining check                                                                             |
+| ----------------------------------------- | ----- | ------------ | ------------------------------------------------------------------------------------------- |
+| 2.4.11 Focus Not Obscured (Minimum)       | AA    | Evidence gap | Check focused controls under toolbars, overlays, and magnification.                         |
+| 2.5.7 Dragging Movements                  | AA    | Evidence gap | Review drag-only map operations and equivalent single-pointer actions.                      |
+| 2.5.8 Target Size (Minimum)               | AA    | Evidence gap | Measure rendered target size/spacing; apply defined exceptions before classifying failures. |
+| 3.2.6 Consistent Help                     | A     | Evidence gap | Review placement of repeated help mechanisms across delivered pages.                        |
+| 3.3.7 Redundant Entry                     | A     | Evidence gap | Review repeated entry within complete create/edit/upload processes.                         |
+| 3.3.8 Accessible Authentication (Minimum) | AA    | Evidence gap | Authentication absent in local mode; follow-up required.                                    |
+
+The additional criteria have no final ratings. Target-size automated results can inform 2.5.8; passing the rule does not establish full conformance.
+[ITI current template](https://www.itic.org/policy/accessibility/vpat) supplies the criterion inventory and Parsing errata instruction.
+
+WCAG 2.2 removes 4.1.1 Parsing. The combined worksheet retains that row for WCAG 2.1 and lists six added A/AA criteria separately.

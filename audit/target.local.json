@@ -1,0 +1,6 @@
+{
+  "baseURL": "http://localhost:3000",
+  "backendURL": "http://localhost:7070/api",
+  "disposable": true,
+  "workerVersion": "v7.6"
+}

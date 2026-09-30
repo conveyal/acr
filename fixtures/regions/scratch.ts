@@ -1,0 +1,117 @@
+/** Maintained ACR reference derived from Conveyal UI fixtures; not imported by the collector. */
+
+import { LatLngTuple } from "leaflet";
+
+/** Original Northern Kentucky sample, asset paths, and expected UI interactions. */
+export const ScratchRegionValues = {
+  name: "NK",
+  description: "Test description",
+  PBFfile: "regions/nky/streets.osm.pbf",
+  GTFSfile: "regions/nky/TANK-GTFS.zip",
+  corruptGTFSfile: "regions/nky/null-GTFS.zip",
+  bundleName: "TANK",
+  feedAgencyName: "Transit Authority of Northern Kentucky: 2019-10-31 to 2020-08-27",
+  sampleRouteName: "Southbank Shuttle",
+  searchTerm: "covington",
+  foundName: "Covington, Kentucky, United States",
+  bounds: {
+    north: 39.1199,
+    south: 38.9268,
+    east: -84.3592,
+    west: -84.706,
+  } as CL.WgsBounds,
+  center: [39.02335, -84.5326] as LatLngTuple,
+  date: "2020-07-20",
+  weekendDate: "2020-07-19",
+  newRoute: [
+    [39.085792, -84.488225],
+    [39.08493, -84.489807],
+    [39.084314, -84.490903],
+    [39.082839, -84.493576],
+    [39.082113, -84.494906],
+    [39.07899138266548, -84.50084924697876],
+    [39.078113, -84.505344],
+    [39.07767545867955, -84.5087242126465],
+    [39.077075788976124, -84.51271533966064],
+    [39.07675929457793, -84.51522588729858],
+  ] as LatLngTuple[],
+  opportunities: {
+    csv: {
+      file: "regions/nky/sports-pitches.csv",
+      name: "pitches",
+      description: "sports fields from OSM - baseball diamonds, etc.",
+      latitudeField: "lat",
+      longitudeField: "lon",
+      numericFields: ["count"],
+      totalOpportunities: 322,
+    },
+    shapefile: {
+      name: "block groups",
+      files: [
+        "regions/nky/block-groups/block-groups.dbf",
+        "regions/nky/block-groups/block-groups.prj",
+        "regions/nky/block-groups/block-groups.shp",
+        "regions/nky/block-groups/block-groups.shx",
+      ],
+      numericFields: ["people", "males", "females", "asians", "blacks", "hispanics", "whites"],
+    },
+    grid: {
+      name: "residents",
+      file: "regions/nky/people.grid",
+      description: "home population density from census BG shapefile",
+      totalOpportunities: 227_903,
+    },
+  },
+  importRoutes: {
+    shapefile: "regions/nky/import-routes.zip",
+    nameField: "name",
+    frequencyField: "headway",
+    speedField: "kmph",
+    routes: [
+      {
+        name: "Route A (imported)",
+        frequency: "00:30:00",
+        speed: 20,
+      },
+      {
+        name: "Route B (imported)",
+        frequency: "01:00:00",
+        speed: 15,
+      },
+    ],
+  },
+  aggregationAreas: {
+    files: [
+      "regions/nky/city-boundaries/cities.dbf",
+      "regions/nky/city-boundaries/cities.prj",
+      "regions/nky/city-boundaries/cities.shp",
+      "regions/nky/city-boundaries/cities.shx",
+    ],
+    nameField: "name",
+    sampleName: "Covington",
+  },
+  testCases: {
+    removeStops: {
+      routeName: "25X",
+      bounds: [
+        [39.09522, -84.52121],
+        [39.10806, -84.52225],
+        [39.10833, -84.50306],
+        [39.09611, -84.49728],
+      ] as LatLngTuple[],
+    },
+  },
+  locations: {
+    downtown: [39.0888, -84.5106] as LatLngTuple,
+    middle: [39.0333, -84.4601] as LatLngTuple,
+    margin: [38.9818, -84.65] as LatLngTuple,
+  },
+  customRegionSubset: {
+    north: 39.116,
+    south: 39.058,
+    east: -84.454,
+    west: -84.555,
+  } as CL.WgsBounds,
+} as const;
+
+export default ScratchRegionValues;
