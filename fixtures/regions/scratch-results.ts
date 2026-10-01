@@ -1,4 +1,4 @@
-/** Maintained ACR reference derived from Conveyal UI fixtures; not imported by the collector. */
+/** Maintained ACR reference derived from conveyal/ui repository fixtures; not imported by the collector. */
 
 import { RECOMMENDED_WORKER_VERSION } from "lib/constants/r5";
 

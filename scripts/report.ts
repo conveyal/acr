@@ -73,6 +73,18 @@ function reportStatus(data: Assessment, completeConformance: boolean) {
   return { status, notes, banner };
 }
 
+/** A row is reviewed only when both its conclusion and the current interim evidence are approved. */
+function conclusionStatus(data: Assessment, approved: boolean, completeConformance: boolean) {
+  if (completeConformance) return { notes: "", suffix: "" };
+  if (data.reportReview?.approved && data.latestAudit?.reviewed && approved) {
+    return {
+      notes: "Reviewed interim conclusion; incomplete conformance evaluation. ",
+      suffix: " — reviewed interim",
+    };
+  }
+  return { notes: "Provisional; qualified review pending. ", suffix: " — provisional" };
+}
+
 /** Validate local input structure, criterion coverage, references and publication gates. */
 export function validateAssessment(
   input: unknown,
@@ -205,7 +217,7 @@ function buildOpenACR(
               ? {
                   adherence: {
                     level: r.rating,
-                    notes: `${!completeConformance ? "Provisional; qualified review pending. " : ""}${r.remarks}${
+                    notes: `${conclusionStatus(data, r.approved, completeConformance).notes}${r.remarks}${
                       r.evidence.length
                         ? "\nEvidence: " +
                           r.evidence.map((e) => evidenceLink(e, options)).join(", ")
@@ -238,11 +250,16 @@ function buildOpenACR(
     evaluation_methods_used:
       data.evaluation_methods_used +
       "\nEvaluator qualifications: " +
-      (data.authorQualifications || "Pending qualified evaluator designation."),
+      (data.authorQualifications ||
+        (data.reportReview?.approved
+          ? "Not asserted for this interim assessment."
+          : "Pending qualified evaluator designation.")),
     notes: status.notes,
     product: data.product,
     report_date: completeConformance ? data.publicationDate! : data.evaluationDate,
-    title: completeConformance ? "Conveyal Accessibility Conformance Report" : data.title,
+    title: completeConformance
+      ? `${data.product.name} Accessibility Conformance Report`
+      : data.title,
     vendor: data.vendor,
     version: 1,
   };
@@ -336,7 +353,13 @@ function renderReport(
     ["Date", output.report_date],
     ["Author", data.author.name || "Not designated; qualified review pending"],
     ["Author contact", data.author.email || "Pending designation"],
+    ["Author organization", data.author.company_name || "Pending designation"],
+    ["Vendor", data.vendor.company_name || "Pending designation"],
     ["Vendor contact", data.vendor.email || "Pending designation"],
+    ["Reviewer", data.reportReview?.reviewer || "Review pending"],
+    ["Review timestamp (UTC)", data.reportReview?.reviewedAt || "Review pending"],
+    ["Vendor approval", data.vendorApproved ? "Approved" : "Not approved"],
+    ["Publication date", data.publicationDate || "Unpublished"],
     ["Notes", output.notes],
     ["Evaluation methods", output.evaluation_methods_used],
     ["Distribution license", data.distributionLicense || "Not approved; internal draft"],
@@ -358,7 +381,7 @@ function renderReport(
     markdown += `## WCAG 2.1 Level ${level}\n\n| Criterion | Conformance | Remarks and evidence |\n| --- | --- | --- |\n`;
     for (const row of data.criteria.filter((r) => r.level === level)) {
       const rating = row.rating
-        ? labels[row.rating] + (completeConformance ? "" : " — provisional")
+        ? labels[row.rating] + conclusionStatus(data, row.approved, completeConformance).suffix
         : "Pending evidence — no rating";
       const links = row.evidence.map(
         (e) => `<a href="${escape(evidenceLink(e, options))}">${escape(e)}</a>`,
@@ -386,7 +409,7 @@ function renderReport(
     "scope.md",
     "findings.md",
     "roadmap.md",
-    "questionnaire-draft.md",
+    "questionnaire.md",
     "manual-testing.md",
     "criteria-matrix.md",
   ]) {
@@ -447,7 +470,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === import.meta.filename) {
       throw Error("Use validate, build, or check");
     }
     console.log(
-      `${command}: valid ${completeConformance ? "final" : "draft"} format; ${
+      `${command}: valid ${completeConformance ? "complete conformance" : data.reportReview?.approved ? "reviewed interim" : "draft"} format; ${
         data.criteria.filter((r) => !r.rating).length
       } unrated criteria. No product conformance certification.`,
     );

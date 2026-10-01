@@ -184,21 +184,33 @@ export function evidenceIndex(manifest: EvidenceManifest, local = false) {
 }
 /** Maintained companion inputs included alongside each assessment. */
 export const companions = [
+  "LICENSE",
+  "PROVENANCE.md",
   "findings.json",
   "findings.md",
   "scope.md",
   "roadmap.md",
-  "questionnaire-draft.md",
+  "questionnaire.md",
   "manual-testing.md",
   "criteria-matrix.md",
   "criteria-matrix.csv",
-  "acr-draft.md",
+  "assessment-worksheet.md",
 ];
-/** Copy maintained report companions into a collection draft. */
+/** Older unpublished bundles keep these names; normalize copies without modifying their archives. */
+const companionRenames: Record<string, string> = {
+  "acr-draft.md": "assessment-worksheet.md",
+  "questionnaire-draft.md": "questionnaire.md",
+};
+/** Copy companions using stable filenames, removing superseded names only after successful copying. */
 export function copyCompanions(source: string, destination: string) {
   for (const name of companions) {
-    if (fs.existsSync(path.join(source, name)))
-      fs.copyFileSync(path.join(source, name), path.join(destination, name));
+    const oldName = Object.keys(companionRenames).find((old) => companionRenames[old] === name);
+    const current = path.join(source, name);
+    const original = oldName ? path.join(source, oldName) : current;
+    const from = fs.existsSync(current) ? current : original;
+    if (!fs.existsSync(from)) continue;
+    fs.copyFileSync(from, path.join(destination, name));
+    if (oldName) fs.rmSync(path.join(destination, oldName), { force: true });
   }
 }
 /** Replace raw companion links with stable anchors in the tracked evidence index. */

@@ -16,7 +16,14 @@
     "proposedTechnique": "Add Zoom in and Zoom out accessible names to the shared buttons. Preserve keyboard activation.",
     "implementedTechnique": null,
     "retest": "Inspect both map systems with a screen reader and verify names, roles, activation, and disabled states.",
-    "issueUrl": "https://github.com/conveyal/ui/issues/2155"
+    "issueUrl": "https://github.com/conveyal/ui/issues/2155",
+    "latestObservation": {
+      "collection": "2026-10-01.3",
+      "date": "2026-10-01",
+      "observation": "Axe reports unnamed zoom buttons; keyboard Enter changed zoom 12 to 13 but the activated button had no accessible name.",
+      "evidence": ["evidence/region-create.json", "evidence/keyboard/map-zoom-buttons.json"],
+      "humanReviewApproved": true
+    }
   },
   {
     "id": "A11Y-002",
@@ -35,7 +42,14 @@
     "proposedTechnique": "Put descriptive names on the anchors themselves, using visible or visually hidden text. Do not rely on hover tooltips.",
     "implementedTechnique": null,
     "retest": "Tab through each affected link and verify its purpose is announced without hovering.",
-    "issueUrl": "https://github.com/conveyal/ui/issues/2156"
+    "issueUrl": "https://github.com/conveyal/ui/issues/2156",
+    "latestObservation": {
+      "collection": "2026-10-01.3",
+      "date": "2026-10-01",
+      "observation": "Axe reports unnamed documentation/help anchors, including the sidebar documentation link.",
+      "evidence": ["evidence/projects.json", "evidence/region-create.json"],
+      "humanReviewApproved": true
+    }
   },
   {
     "id": "A11Y-003",
@@ -66,7 +80,19 @@
     "proposedTechnique": "Give each control a descriptive label and associate it with the actual input or slider thumb. Include units where useful.",
     "implementedTechnique": null,
     "retest": "Verify every affected control announces its name, role, current value, bounds, and state; operate enabled controls with the keyboard.",
-    "issueUrl": "https://github.com/conveyal/ui/issues/2157"
+    "issueUrl": "https://github.com/conveyal/ui/issues/2157",
+    "latestObservation": {
+      "collection": "2026-10-01.3",
+      "date": "2026-10-01",
+      "observation": "Axe reports unnamed selects, sliders, and import controls. Keyboard slider value changes succeeded but do not resolve missing accessible names.",
+      "evidence": [
+        "evidence/analysis.json",
+        "evidence/import-modifications.json",
+        "evidence/aggregation-areas-populated.json",
+        "evidence/regional-histogram-controls.json"
+      ],
+      "humanReviewApproved": true
+    }
   },
   {
     "id": "A11Y-004",
@@ -89,7 +115,14 @@
     "proposedTechnique": "Adjust shared text and button colors, then measure rendered pairs. Review each hit; exclude genuinely inactive controls rather than accepting all scanner classifications.",
     "implementedTechnique": null,
     "retest": "Measure enabled foreground/background pairs in light and dark modes, including hover and focus states. Apply 4.5:1 to normal text and 3:1 only where the large-text threshold applies.",
-    "issueUrl": "https://github.com/conveyal/ui/issues/2158"
+    "issueUrl": "https://github.com/conveyal/ui/issues/2158",
+    "latestObservation": {
+      "collection": "2026-10-01.3",
+      "date": "2026-10-01",
+      "observation": "Axe reports insufficient contrast on enabled controls, including 3.24:1 white text on the green Create new region button; disabled-control hits remain subject to exception review.",
+      "evidence": ["evidence/home.json", "evidence/region-create.json"],
+      "humanReviewApproved": true
+    }
   },
   {
     "id": "A11Y-005",
@@ -108,7 +141,18 @@
     "proposedTechnique": "Allow the form panel and controls to reflow and remain reachable. Apply any two-dimensional map exception only to the map, not the surrounding form.",
     "implementedTechnique": null,
     "retest": "At 320 CSS pixels and actual 400% zoom, complete the region form using the keyboard without clipped non-map content or two-dimensional scrolling.",
-    "issueUrl": "https://github.com/conveyal/ui/issues/2159"
+    "issueUrl": "https://github.com/conveyal/ui/issues/2159",
+    "latestObservation": {
+      "collection": "2026-10-01.3",
+      "date": "2026-10-01",
+      "observation": "At 320 CSS pixels, document scrollWidth was 361; the screenshot corroborates clipped non-map layout. Actual 400% browser zoom remains untested.",
+      "evidence": [
+        "evidence/region-create-320px.json",
+        "evidence/screenshots/region-create-320px.png",
+        "evidence/keyboard/reflow-320px.json"
+      ],
+      "humanReviewApproved": true
+    }
   },
   {
     "id": "A11Y-006",
@@ -122,7 +166,7 @@
       "lib/components/modifications-map/draw-polygon.tsx",
       "lib/components/modifications-map/hop-select-polygon.tsx"
     ],
-    "reproduction": "Open the existing CYP_Adjust Speed0 modification. Activate Select segments with Enter. The UI says Click to start drawing shape and exposes drawing toolbar links but no keyboard vertex-placement or equivalent segment selection. Escape cancels.",
+    "reproduction": "Open the run-owned speed modification. Activate Select segments with Enter. The UI says Click to start drawing shape and exposes drawing toolbar links but no keyboard vertex-placement or equivalent segment selection. Escape cancels.",
     "impact": "Keyboard users cannot complete segment-limited speed adjustment through this selection flow.",
     "status": "Open",
     "owner": null,
@@ -131,7 +175,17 @@
     "proposedTechnique": "Provide an equivalent keyboard-operable segment selector, such as named stop-pair choices, or keyboard geometry editing with instructions. Assess other drawing tools separately.",
     "implementedTechnique": null,
     "retest": "Select, add, and remove intended segments without a pointer. Verify equivalent outcomes and cancellation. Use an isolated fixture for save/reload validation.",
-    "issueUrl": "https://github.com/conveyal/ui/issues/2160"
+    "issueUrl": "https://github.com/conveyal/ui/issues/2160",
+    "latestObservation": {
+      "collection": "2026-10-01.3",
+      "date": "2026-10-01",
+      "observation": "Keyboard activation entered polygon selection; no vertex was created, Escape cancelled, and focus did not return to the trigger in this observation. This is evidence about the sampled flow, not every drawing tool.",
+      "evidence": [
+        "evidence/adjust-speed-polygon-selection.json",
+        "evidence/keyboard/polygon-keyboard.json"
+      ],
+      "humanReviewApproved": true
+    }
   },
   {
     "id": "A11Y-007",
@@ -141,7 +195,7 @@
     "axeRules": [],
     "evidence": ["regional-histogram", "regional-histogram-controls"],
     "sources": ["lib/aggregation-area/components/chart.tsx"],
-    "reproduction": "Open the existing CYP_BASELINE result with CYP_City Boundaries and CYP_residents weighting. The histogram SVG has axis text but no accessible title/description or bin-value equivalent. The UI exposes a percentile summary and weighted average, not the histogram distribution.",
+    "reproduction": "Open the completed run-owned regional result with its boundary aggregation area and population weighting. The histogram SVG has axis text but no accessible title/description or bin-value equivalent. The UI exposes a percentile summary and weighted average, not the histogram distribution.",
     "impact": "Nonvisual users cannot access the distribution information conveyed by the histogram.",
     "status": "Open",
     "owner": null,
@@ -150,7 +204,17 @@
     "proposedTechnique": "Add a descriptive chart name and a text or table equivalent for the bins and comparison series. Preserve the existing useful summary readouts.",
     "implementedTechnique": null,
     "retest": "Using a screen reader, identify the chart and inspect bin ranges, counts, units, and comparison series. Verify the equivalent matches rendered data.",
-    "issueUrl": "https://github.com/conveyal/ui/issues/2161"
+    "issueUrl": "https://github.com/conveyal/ui/issues/2161",
+    "latestObservation": {
+      "collection": "2026-10-01.3",
+      "date": "2026-10-01",
+      "observation": "The rendered histogram had no accessible title/description or labeling reference; snapshots retained aggregate summaries but no equivalent bin distribution. This supports the sampled finding; human screen-reader review remains pending.",
+      "evidence": [
+        "evidence/regional-histogram-controls.json",
+        "evidence/keyboard/chart-text-alternative.json"
+      ],
+      "humanReviewApproved": true
+    }
   },
   {
     "id": "A11Y-008",
@@ -160,7 +224,7 @@
     "axeRules": [],
     "evidence": ["data-source-detail"],
     "sources": ["lib/map/components/FeatureTable.tsx", "lib/map/hooks/useHoveredFeature.ts"],
-    "reproduction": "Open the existing CYP_City Boundaries data source. The UI instructs users to hover over a feature. The feature hook subscribes to mousemove and provides no keyboard feature-selection path.",
+    "reproduction": "Open the run-owned boundary data source. The UI instructs users to hover over a feature. The feature hook subscribes to mousemove and provides no keyboard feature-selection path.",
     "impact": "Keyboard users cannot inspect the properties presented by hovering over spatial features.",
     "status": "Open",
     "owner": null,
@@ -169,7 +233,17 @@
     "proposedTechnique": "Add a keyboard-operable feature list/search or equivalent feature selection, with a readable properties panel. Keep pointer hover as an optional shortcut.",
     "implementedTechnique": null,
     "retest": "Select the same feature with keyboard and pointer and compare the properties. Test focus movement and announcements with assistive technology.",
-    "issueUrl": "https://github.com/conveyal/ui/issues/2162"
+    "issueUrl": "https://github.com/conveyal/ui/issues/2162",
+    "latestObservation": {
+      "collection": "2026-10-01.3",
+      "date": "2026-10-01",
+      "observation": "The fixture contained 36 spatial features; keyboard activation did not expose feature properties, and the view still instructed pointer hover.",
+      "evidence": [
+        "evidence/data-source-detail.json",
+        "evidence/keyboard/feature-properties-keyboard.json"
+      ],
+      "humanReviewApproved": true
+    }
   },
   {
     "id": "A11Y-009",
@@ -188,6 +262,13 @@
     "proposedTechnique": "Allow wrapping or give the scroll region an accessible keyboard focus target and label. Preserve selectable command text.",
     "implementedTechnique": null,
     "retest": "Reach and read each complete command using only the keyboard at normal size and magnification.",
-    "issueUrl": "https://github.com/conveyal/ui/issues/2163"
+    "issueUrl": "https://github.com/conveyal/ui/issues/2163",
+    "latestObservation": {
+      "collection": "2026-10-01.3",
+      "date": "2026-10-01",
+      "observation": "Axe still identified both overflowing osmconvert/osmosis command containers as scroll regions without keyboard focus targets.",
+      "evidence": ["evidence/bundle-create.json"],
+      "humanReviewApproved": true
+    }
   }
 ]

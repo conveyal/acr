@@ -526,3 +526,43 @@ test("reports validate and link through an indexed manifest without raw evidence
     scenario.dispose();
   }
 });
+
+test("preparation normalizes old bundled companion names and stages their tracked deletions", async () => {
+  const scenario = fixture();
+  const renames = [
+    ["acr-draft.md", "assessment-worksheet.md"],
+    ["questionnaire-draft.md", "questionnaire.md"],
+  ];
+  try {
+    for (const [oldName, newName] of renames) {
+      fs.renameSync(path.join(scenario.payload, newName), path.join(scenario.payload, oldName));
+    }
+    const recordFile = path.join(scenario.collection, "collection.json");
+    writeJSON(recordFile, {
+      ...readJSON<FinalizedCollection>(recordFile),
+      ...pack(scenario.payload, scenario.bundle),
+    });
+    await scenario.workflow.prepare(scenario.id);
+    for (const [oldName, newName] of renames) {
+      assert.equal(fs.existsSync(path.join(scenario.directory, oldName)), false);
+      assert.equal(fs.existsSync(path.join(scenario.directory, newName)), true);
+    }
+    const originalRun = scenario.workflow.run;
+    scenario.workflow.run = (tool, args, directory) => {
+      if (tool === "git" && args[0] === "diff" && !args.includes("--cached")) {
+        return renames.map(([oldName]) => oldName).join("\n");
+      }
+      return originalRun(tool, args, directory);
+    };
+    await scenario.workflow.prepare(scenario.id);
+    const stage = scenario.state.calls.findLast((call) => call[0] === "git" && call[1] === "add");
+    const record = readJSON<FinalizedCollection>(recordFile);
+    for (const [oldName, newName] of renames) {
+      assert.ok(stage?.includes(oldName));
+      assert.equal(oldName in record.files, false);
+      assert.equal(newName in record.files, true);
+    }
+  } finally {
+    scenario.dispose();
+  }
+});
