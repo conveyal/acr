@@ -17,10 +17,14 @@ Repository reports use a compact evidence index; downloadable Release bundles re
 
 ## Reviewed interim releases
 
-Collection `2026-10-01.3` has content, scope, findings reconciliation, nine conclusion, and public-distribution approval from Trevor Gerhardt at 2026-10-01T09:41:25Z. CC0-1.0 is approved. Forty-one criteria remain unknown; vendor approval is withheld and qualified-evaluator credentials are not asserted. Publication date remains unset. Complete-conformance requirements above are separate from this interim Release.
+Collection `2026-10-01.3` has content, scope, findings reconciliation, nine conclusion, and public-distribution approval from Trevor Gerhardt at 2026-10-01T09:41:25Z. CC0-1.0 is approved. Forty-one criteria remain unknown; vendor approval is withheld and qualified-evaluator credentials are not asserted. The first Release was published on October 1, 2026. Repository and hosted reports correct publication metadata; the original Release bundle remains its reviewed snapshot. Complete-conformance requirements above are separate from this interim Release.
 
 A monthly scan is an evidence collection, not a conformance publication. Each collection is reviewed on an audit branch and PR. Only assessments with recorded review and distribution approval belong on `main`. A separate GitHub PR review is not required by this workflow.
 
 Interim review may leave criteria explicitly unknown. Reconcile findings and scope, record the actual reviewer and date in `reportReview`, approve public distribution and its license, and mark `latestAudit.reviewed` true. Refresh the draft Release with `audit:prepare` after recording assessment approval and before merge. Run `audit:release` after merge; it verifies the prepared and merged content, recorded assessment approval, and downloaded evidence before publishing. These releases remain clearly labeled interim. Final ACR submissions still require every gate above.
 
 Review report text before pushing a public PR. Draft Release evidence is available to repository users with write access; it becomes public only when explicitly published. Bundles exclude authentication files, recovery manifests, and diagnostic traces. Keep pending bundles locally; published assets remain retained indefinitely. Local published copies may be removed after upload verification.
+
+## Post-publication metadata
+
+After a Release succeeds, verify its actual UTC publication date in GitHub. Update `assessment.json`'s `publicationDate` and corresponding maintained narrative, then run `pnpm build` and `pnpm check`. Commit these metadata corrections to `main` through the normal review workflow. Do not rerun preparation for a published collection or replace its original Release bundle. Repository and hosted reports contain the correction; the Release remains its reviewed snapshot. Collection automatically clears the publication date for the next audit.

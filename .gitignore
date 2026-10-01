@@ -157,3 +157,6 @@ output/
 !/evidence/README.md
 !/evidence/manifest.json
 /history/
+
+# Local Vercel project linkage
+.vercel/

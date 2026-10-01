@@ -18,7 +18,8 @@
     "audit:prepare": "node scripts/review.ts prepare",
     "audit:release": "node scripts/review.ts release",
     "audit:evidence": "node scripts/review.ts evidence",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "build:site": "node scripts/site.ts"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",

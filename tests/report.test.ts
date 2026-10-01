@@ -233,3 +233,16 @@ test("unapproved conclusions or unreconciled evidence retain provisional labels 
   assert.match(markdown, /NEW EVIDENCE AWAITS RECONCILIATION/);
   assert.doesNotMatch(markdown, / — reviewed interim/);
 });
+
+test("published interim metadata records the Release date without changing evaluation or approval", () => {
+  const assessment = reviewedInterim();
+  const before = artifacts(assessment);
+  assert.match(before["conveyal-acr.md"], /Publication date:\*\* Unpublished/);
+  assessment.publicationDate = "2026-10-01";
+  const after = artifacts(assessment);
+  assert.match(after["conveyal-acr.md"], /Publication date:\*\* 2026-10-01/);
+  assert.match(after["conveyal-acr.html"], /2026-10-01/);
+  assert.equal(assessment.vendorApproved, false);
+  assert.equal(assessment.criteria.filter((row) => !row.rating).length, 41);
+  assert.throws(() => exportOpenACR(assessment, true), /Unresolved/);
+});

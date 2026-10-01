@@ -1,6 +1,6 @@
 # Audit 2026-10-01.3 - Reviewed Interim Assessment
 
-Collected October 1, 2026 against http://localhost:3000 in unauthenticated local mode. This is the first audit proposed for publication.
+Collected October 1, 2026 against http://localhost:3000 in unauthenticated local mode. This is the first published audit.
 
 ## Scope and collection
 
@@ -27,4 +27,4 @@ Findings reconciliation, scope, public distribution, and nine rated criterion co
 
 Vendor approval remains withheld; qualified-evaluator credentials are not asserted. Authentication, customer-release verification, complete-process testing, documentation/training, and human assistive-technology coverage remain pending. No remediation, completed conformance certification, or vendor commitment is implied.
 
-Publication has not occurred. Refresh the review bundle after recording assessment approval, then merge before invoking explicit publication. The Release must remain labeled a reviewed interim assessment with explicit unknowns.
+Published October 1, 2026 as a reviewed interim assessment with explicit unknowns. Repository and hosted reports correct publication metadata; the original Release bundle remains its reviewed snapshot.

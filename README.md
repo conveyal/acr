@@ -4,7 +4,7 @@ Accessibility Conformance Reports for Conveyal Analysis, a product of EBP, Inc.
 
 ## First reviewed interim assessment
 
-Collection `2026-10-01.3` evaluates Conveyal Analysis at **http://localhost:3000**, in local mode without authentication, on October 1, 2026. Trevor Gerhardt reviewed the findings, scope, public distribution, and nine rated conclusions. Forty-one criteria remain unknown. Vendor approval is withheld and qualified-evaluator credentials are not asserted. The assessment is approved for distribution under CC0-1.0 but has not been published; it is not a completed conformance evaluation or submission-ready ACR.
+Collection `2026-10-01.3` evaluates Conveyal Analysis at **http://localhost:3000**, in local mode without authentication, on October 1, 2026. Trevor Gerhardt reviewed the findings, scope, public distribution, and nine rated conclusions. Forty-one criteria remain unknown. Vendor approval is withheld and qualified-evaluator credentials are not asserted. The assessment is published under CC0-1.0 on October 1, 2026; it is not a completed conformance evaluation or submission-ready ACR.
 
 ## Results and documents
 
@@ -160,3 +160,13 @@ The reviewed interim assessment contains 41 unrated criteria, eight reviewed Par
 `pnpm run build:final` requires all 50 reviewed ratings, qualified review and vendor approval, real contact information, a publication date and an approved distribution license. It writes separate `conveyal-final-*` files alongside the drafts. This command currently fails by design. It does not create a completed official VPAT document, publish, deploy, or send anything.
 
 Read [asset provenance and template alignment](PROVENANCE.md) and the [publication checklist](PUBLISHING.md) before moving or releasing this directory. Review and redistribution approval apply to this collection; subsequent collections require their own review.
+
+## Hosted reports
+
+`pnpm build:site` generates `dist/site` using only Node built-ins. It discovers checked-in HTML reports and report assets, and links maintained Markdown documents and the evidence index to the deployed commit on GitHub. Raw evidence, source code, sessions, and diagnostics are never served. The latest Release link may refer to an earlier audit while a repository assessment awaits publication.
+
+Vercel uses framework **Other**, skips dependency installation, runs `node scripts/site.ts`, and serves `dist/site`. Configure Node **24.x** in project settings; Vercel chooses the patch version, while local Node and pnpm requirements remain unchanged. Production builds require recorded assessment and evidence-review approval; unknown interim criteria and withheld vendor approval remain permitted. Preview builds can show pending assessments. No GitHub Actions deployment credential is needed.
+
+Use project `acr` in the Conveyal team with its assigned `.vercel.app` address. Stage the initial deployment with `vercel --prod --skip-domain --scope conveyal --build-env VERCEL_GIT_COMMIT_SHA="$(git rev-parse HEAD)"`; verify the preview before promoting it. After approval, promote that deployment and connect the GitHub repository with `main` as the production branch. Successful pushes to `main` then update the site automatically; failed builds retain the preceding deployment. No DNS changes are required.
+
+The first Release was published October 1, 2026. Repository and hosted reports correct its publication metadata; the original Release bundle remains the reviewed snapshot. Its evidence index retains the original review-stage wording as part of that preserved evidence record.

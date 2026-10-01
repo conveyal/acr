@@ -107,6 +107,7 @@ export function finalizeCollection(runDir: string, directory = root) {
   fs.writeFileSync(path.join(staged, "run.json"), `${JSON.stringify(latest, null, 2)}\n`);
   const data = readJSON<Assessment>(path.join(directory, "assessment.json"));
   data.latestAudit = latest;
+  data.publicationDate = null;
   data.reportReview = {
     approved: false,
     findingsReconciled: false,

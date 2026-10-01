@@ -364,6 +364,7 @@ test("complete collection creates an isolated bundle and keeps repository baseli
   const assessment: Assessment = JSON.parse(
     fs.readFileSync(path.join(root, "assessment.json"), "utf8"),
   );
+  assessment.publicationDate = "2026-09-30";
   const runId = "acr-22222222-2222-2222-2222-222222222222";
   try {
     fs.mkdirSync(path.join(staged, "keyboard"), { recursive: true });
@@ -421,9 +422,15 @@ test("complete collection creates an isolated bundle and keeps repository baseli
     fs.mkdirSync(extracted);
     extractBundle(collected.bundle, extracted);
     const refreshed = readJSON<Assessment>(path.join(extracted, "assessment.json"));
-    const { latestAudit, reportReview: _reportReview, ...preserved } = refreshed;
-    const { latestAudit: _oldAudit, reportReview: _oldReview, ...original } = assessment;
+    const { latestAudit, reportReview: _reportReview, publicationDate, ...preserved } = refreshed;
+    const {
+      latestAudit: _oldAudit,
+      reportReview: _oldReview,
+      publicationDate: _oldDate,
+      ...original
+    } = assessment;
     assert.deepEqual(preserved, original);
+    assert.equal(publicationDate, null);
     assert.ok(latestAudit?.states);
     assert.equal(latestAudit.reviewed, false);
     assert.equal(latestAudit.states.length, 36);

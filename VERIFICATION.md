@@ -19,4 +19,12 @@ Verified with Node 24.21.0 and pnpm 12.6.0:
 
 The generated HTML includes document language/title, a main landmark, heading hierarchy, captioned tables, row/column headers, named keyboard-focusable scroll regions, and visible focus styles. No human screen-reader evaluation of the generated reports is asserted. Schema validity and automated checks do not establish product conformance.
 
-This finalization ran no product scans, preparation, commits, pushes, merges, or publication. The assessment is reviewed interim and unpublished. User-run preparation must refresh the draft Release bundle before merge and explicit publication.
+This finalization ran no product scans, preparation, commits, pushes, merges, or publication. The reviewed interim assessment was subsequently published October 1, 2026. The original Release remains unchanged; repository reports now record that publication date.
+
+## Static hosting verification
+
+The dependency-free site builder passed discovery, commit-pinned document/evidence links, local HTML navigation, report asset copying, missing-link and missing-anchor rejection, production review gating, and preservation of previous output after a rejected build. It also ran in an isolated directory without installed packages. Collection coverage verifies that a previously published date is cleared without changing the repository assessment. Published and pending interim rendering are covered separately.
+
+All 65 tests, correctness lint, formatting, type checking, validation, report generation/freshness, and production site generation passed. Existing compact-checkout and restored-evidence link checks remain covered. Complete-conformance generation remains blocked by unresolved criteria. Local browser checks verified Tab/Enter navigation, visible focus, a 320px homepage without horizontal overflow, and a report link reaching the commit-pinned GitHub evidence index.
+
+Evidence files, manifests, local retained bundles, ratings, review metadata, assessment dates, vendor/qualification flags, tags, and published Release asset metadata matched the pre-change snapshot. Vercel deployment and its assigned URL remain pending the implementation commit/push; staged verification and promotion follow that handoff.
