@@ -29,6 +29,9 @@ export const reviewPaths = [
   "assessment.json",
   "changes.md",
   ...companions,
+  // Allow preparation to stage removal of renamed companions from existing review branches.
+  "acr-draft.md",
+  "questionnaire-draft.md",
   "evidence/manifest.json",
   "evidence/README.md",
   ...Object.values(reportNames).map((name) => `reports/${name}`),
@@ -423,10 +426,13 @@ export class ReviewWorkflow {
   }
   /** Stage only reviewed report paths and persist the pushed revision before remote uploads. */
   private commitReview(ctx: ReviewContext, id: string) {
+    const changed = this.git("diff", "--name-only", "HEAD").split("\n");
     this.git(
       "add",
       "--",
-      ...reviewPaths.filter((name) => fs.existsSync(path.join(this.directory, name))),
+      ...reviewPaths.filter(
+        (name) => fs.existsSync(path.join(this.directory, name)) || changed.includes(name),
+      ),
     );
     if (this.git("diff", "--cached", "--name-only")) {
       this.git("commit", "-m", `Review accessibility audit ${id}`);

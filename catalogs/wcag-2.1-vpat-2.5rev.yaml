@@ -680,7 +680,7 @@ terms:
     label: Not Evaluated
     description: The product has not been evaluated against the criterion. This can
       be used only in WCAG 2.x Level AAA.
-description: Conveyal-maintained WCAG 2.1 subset cross-checked against VPAT
+description: WCAG 2.1 subset maintained by EBP, Inc., cross-checked against VPAT
   2.5Rev WCAG (April 2025). This is not an ITI-published catalog. See
   ../PROVENANCE.md. WCAG 2.2-only rows are excluded; AAA is disabled in the
   report. Parsing 4.1.1 must be Supports per template errata.

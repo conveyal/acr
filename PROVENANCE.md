@@ -15,9 +15,9 @@ GSA describes its original project material as public domain; third-party librar
 
 ## Local catalog adjustments
 
-`catalogs/wcag-2.1-vpat-2.5rev.yaml` is a Conveyal-maintained derivative, **not an ITI or GSA published VPAT 2.5Rev catalog**.
+`catalogs/wcag-2.1-vpat-2.5rev.yaml` is a derivative maintained by EBP, Inc., **not an ITI or GSA published VPAT 2.5Rev catalog**.
 
-The alignment review used the official [VPAT 2.5Rev WCAG template, April 2025](https://www.itic.org/policy/accessibility/vpat), downloaded for the initial baseline. Its instruction text and criterion rows were read directly from the DOCX XML.
+The alignment review used the official [VPAT 2.5Rev WCAG template, April 2025](https://www.itic.org/policy/accessibility/vpat). Its instruction text and criterion rows were read directly from the DOCX XML.
 
 - All 50 WCAG 2.1 A/AA IDs are present in that template and the upstream catalog: 30 A and 20 AA. No change to WCAG 2.1 IDs, level membership, or rating definitions was needed.
 - The official instructions permit removing WCAG 2.2-only rows when reporting on WCAG 2.1. This package exports only WCAG 2.1 A/AA; six WCAG 2.2 A/AA additions remain in the separate gap assessment.
@@ -31,10 +31,8 @@ Schema and catalog validation do not certify ITI template compliance or product 
 
 ## Redistribution
 
-The OpenACR content does not inherit the GSA source-code license. The author must approve the report's distribution license before final export. Our renderer never assigns OpenACR's usual default CC-BY-4.0 license silently. Until Conveyal approves public release and a license, these are internal drafts; the package does not publish or send them.
+Trevor Gerhardt approved distribution of collection `2026-10-01.3` reports and evidence under **CC0-1.0**, the license used by this repository. The unchanged `LICENSE` and this provenance document are included in refreshed bundles. Publication has not occurred. CC0 does not replace third-party licenses or grant rights the distributor does not hold. The renderer records the explicitly approved license and never assigns a default silently.
 
 ## Collector fixtures
 
 `fixtures/` contains 30 assets copied from `conveyal/ui`'s `cypress/fixtures`. The original copied SHA-256 values are retained in `audit/fixture-manifest.json` under `sourceFiles`; `files` records the maintained ACR assets checked before provisioning. The three TypeScript references (`analysis-settings.ts`, `regions/scratch.ts`, and `regions/scratch-results.ts`) retain the original UI imports and values, with ACR file headings, declaration documentation, and formatting. They are reference material, excluded from the collector runtime and type checking; standalone runtime settings live in the manifest. All other fixture assets remain unchanged.
-
-Historical collection manifests preserve their original fixture hashes. Updating the maintained manifest does not rewrite archived evidence or its provenance. The completed history migration tooling was retired after verifying the two retained local archives against their complete 62-file and 93-file inventories; the archives remain under ignored `.cache/audit/legacy/`.

@@ -1,8 +1,8 @@
 # Draft Digital Accessibility Roadmap
 
-**Historical assessment: September 30, 2026.** The assessment text below has not been reconciled with subsequent collections. See the [evidence index](evidence/README.md) for current collection details.
+Collection `2026-10-01.3`, evaluated October 1, 2026. Reviewed by Trevor Gerhardt (trevor.gerhardt@ebp-us.com) at 2026-10-01T09:41:25Z.
 
-**Internal preparation; not a contractual commitment.** Owners and target dates require Conveyal approval.
+**Internal preparation; not a contractual commitment.** Owners and target dates require EBP, Inc. approval.
 All findings remain open. No implemented technique or successful remediation date exists.
 
 | Finding                                                | Criterion           | Severity | Status | Owner              | Target date      | Remediated | Implemented technique |
@@ -85,7 +85,7 @@ All findings remain open. No implemented technique or successful remediation dat
 
 **Locations:** adjust-speed, adjust-speed-polygon-selection. Exact URLs and DOM selectors appear in the linked [finding](findings.md#a11y-006-provide-keyboard-access-to-selecting-route-segments).
 
-**Violation:** Open the existing CYP_Adjust Speed0 modification. Activate Select segments with Enter. The UI says Click to start drawing shape and exposes drawing toolbar links but no keyboard vertex-placement or equivalent segment selection. Escape cancels.
+**Violation:** Open the run-owned speed modification. Activate Select segments with Enter. The UI says Click to start drawing shape and exposes drawing toolbar links but no keyboard vertex-placement or equivalent segment selection. Escape cancels.
 
 **Proposed technique:** Provide an equivalent keyboard-operable segment selector, such as named stop-pair choices, or keyboard geometry editing with instructions. Assess other drawing tools separately.
 
@@ -97,7 +97,7 @@ All findings remain open. No implemented technique or successful remediation dat
 
 **Locations:** regional-histogram, regional-histogram-controls. Exact URLs and DOM selectors appear in the linked [finding](findings.md#a11y-007-expose-aggregate-histogram-information-without-relying-on-the-graphic).
 
-**Violation:** Open the existing CYP_BASELINE result with CYP_City Boundaries and CYP_residents weighting. The histogram SVG has axis text but no accessible title/description or bin-value equivalent. The UI exposes a percentile summary and weighted average, not the histogram distribution.
+**Violation:** Open the completed run-owned regional result with its boundary aggregation area and population weighting. The histogram SVG has axis text but no accessible title/description or bin-value equivalent. The UI exposes a percentile summary and weighted average, not the histogram distribution.
 
 **Proposed technique:** Add a descriptive chart name and a text or table equivalent for the bins and comparison series. Preserve the existing useful summary readouts.
 
@@ -109,7 +109,7 @@ All findings remain open. No implemented technique or successful remediation dat
 
 **Locations:** data-source-detail. Exact URLs and DOM selectors appear in the linked [finding](findings.md#a11y-008-make-spatial-feature-properties-available-from-the-keyboard).
 
-**Violation:** Open the existing CYP_City Boundaries data source. The UI instructs users to hover over a feature. The feature hook subscribes to mousemove and provides no keyboard feature-selection path.
+**Violation:** Open the run-owned boundary data source. The UI instructs users to hover over a feature. The feature hook subscribes to mousemove and provides no keyboard feature-selection path.
 
 **Proposed technique:** Add a keyboard-operable feature list/search or equivalent feature selection, with a readable properties panel. Keep pointer hover as an optional shortcut.
 

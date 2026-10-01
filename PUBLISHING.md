@@ -1,6 +1,6 @@
 # Publication and submission checklist
 
-Formatting checks are separate from evaluation and release approval.
+Formatting checks are separate from evaluation and release approval. The checklist below governs completed conformance and formal submission; interim publication follows the separate section below.
 
 - Complete outstanding evaluation, including authentication, the required human assistive-technology matrix, complete workflows, outputs, and delivered documentation/training. Reconcile results with the actual proposed product release.
 - Designate qualified personnel and a real author/vendor contact. Review every rating and remark, then update `assessment.json`: per-criterion `approved`, qualified-review/vendor approval, publication date, report notes, product/version, methods, contacts and distribution license. Remove draft-specific language only after it is accurate to do so.
@@ -11,11 +11,13 @@ Formatting checks are separate from evaluation and release approval.
 - Transfer reviewed metadata and conformance conclusions into the current official VPAT WCAG template, then verify the completed document's accessibility. Submit it with the approved questionnaire and roadmap. OpenACR YAML/HTML are additional representations.
 - Preview the new repository with all evidence links intact. Collection performs no GitHub writes. `audit:prepare` explicitly commits, pushes, opens a PR, and uploads an unpublished draft Release. `audit:release` explicitly tags and publishes after approval and merge; external submission remains separate.
 
-Repository reports use a compact evidence index; downloadable Release bundles retain relative local evidence links for portability. GitHub issue URLs intentionally continue to point to the Conveyal UI issue tracker. Code source paths in findings identify the audited UI checkout; they are provenance, not build dependencies.
+Repository reports use a compact evidence index; downloadable Release bundles retain relative local evidence links for portability. GitHub issue URLs intentionally continue to point to the Conveyal Analysis issue tracker (`conveyal/ui`). Code source paths in findings identify the audited UI checkout; they are provenance, not build dependencies.
 
-- After each Playwright evidence replacement, reconcile the latest run with criterion conclusions and update dated evaluation metadata before marking `latestAudit.reviewed` true. Historical evidence is not a review of a new target or build. Authentication files and diagnostic traces must not enter published artifacts.
+- After each Playwright evidence replacement, reconcile the latest run with criterion conclusions and update dated evaluation metadata before marking `latestAudit.reviewed` true. Each collection requires review of its actual target and build. Authentication files and diagnostic traces must not enter published artifacts.
 
 ## Reviewed interim releases
+
+Collection `2026-10-01.3` has content, scope, findings reconciliation, nine conclusion, and public-distribution approval from Trevor Gerhardt at 2026-10-01T09:41:25Z. CC0-1.0 is approved. Forty-one criteria remain unknown; vendor approval is withheld and qualified-evaluator credentials are not asserted. Publication date remains unset. Complete-conformance requirements above are separate from this interim Release.
 
 A monthly scan is an evidence collection, not a conformance publication. Each collection is reviewed on an audit branch and PR. Only reviewed and approved assessments belong on `main`; require PR approval through repository branch protection.
 

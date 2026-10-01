@@ -1,4 +1,4 @@
-/** Maintained ACR reference derived from Conveyal UI fixtures; not imported by the collector. */
+/** Maintained ACR reference derived from conveyal/ui repository fixtures; not imported by the collector. */
 
 import { LatLngTuple } from "leaflet";
 

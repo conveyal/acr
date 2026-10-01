@@ -12,8 +12,21 @@ import {
   validateOpenACR,
 } from "../scripts/report.ts";
 import type { Assessment } from "../scripts/report-types.ts";
-/** Read a fresh structurally validated assessment for each mutation. */
-const fresh = () => structuredClone(loadAssessment());
+/** Build an explicitly unreviewed fixture, independent of live assessment approval and contacts. */
+function fresh() {
+  const assessment = structuredClone(loadAssessment());
+  assessment.author = { name: "", email: "" };
+  assessment.vendor.email = "";
+  assessment.authorQualifications = null;
+  assessment.distributionLicense = null;
+  assessment.publicationDate = null;
+  assessment.qualifiedReviewApproved = false;
+  assessment.vendorApproved = false;
+  assessment.reportReview = { approved: false, kind: "interim" };
+  if (assessment.latestAudit) assessment.latestAudit.reviewed = false;
+  for (const row of assessment.criteria) row.approved = false;
+  return assessment;
+}
 test("draft preserves all criteria and represents pending ratings without Not Evaluated", () => {
   const a = fresh();
   const output = exportOpenACR(a);
@@ -86,6 +99,7 @@ test("final publication is blocked by pending assessments and review/contact/lic
     a.latestAudit.reviewed = true;
   }
   assert.doesNotThrow(() => exportOpenACR(a, true));
+  assert.equal(exportOpenACR(a, true).title, `${a.product.name} Accessibility Conformance Report`);
 });
 test("schema and catalog validation reject malformed exports", () => {
   const o = exportOpenACR(fresh());
@@ -135,4 +149,87 @@ test("unknown OpenACR inputs fail with the report validation prefix", () => {
   for (const input of [null, {}]) {
     assert.throws(() => validateOpenACR(input), /Invalid OpenACR/);
   }
+});
+
+/** Approved interim fixture preserves unknown criteria and deliberately withholds full-conformance approval. */
+function reviewedInterim() {
+  const assessment = fresh();
+  assessment.product.name = "Conveyal Analysis";
+  assessment.author = {
+    name: "Synthetic reviewer",
+    email: "reviewer@example.test",
+    company_name: "EBP, Inc.",
+  };
+  assessment.vendor.company_name = "EBP, Inc.";
+  assessment.distributionLicense = "CC0-1.0";
+  assessment.reportReview = {
+    approved: true,
+    kind: "interim",
+    reviewer: assessment.author.name,
+    reviewedAt: "2026-10-01T09:41:25Z",
+    findingsReconciled: true,
+    scopeReviewed: true,
+    publicDistributionApproved: true,
+  };
+  if (assessment.latestAudit) assessment.latestAudit.reviewed = true;
+  for (const row of assessment.criteria) row.approved = row.rating !== null;
+  return assessment;
+}
+
+test("reviewed interim exports nine approved conclusions, 41 unknowns and CC0 without vendor approval", () => {
+  const assessment = reviewedInterim();
+  const output = exportOpenACR(assessment);
+  assert.equal(output.license, "CC0-1.0");
+  assert.equal(output.product.name, "Conveyal Analysis");
+  assert.equal(output.author.company_name, "EBP, Inc.");
+  assert.equal(output.vendor.company_name, "EBP, Inc.");
+  assert.equal(assessment.vendorApproved, false);
+  assert.equal(assessment.qualifiedReviewApproved, false);
+  assert.equal(assessment.publicationDate, null);
+  assert.equal(assessment.criteria.filter((row) => row.approved).length, 9);
+  assert.equal(assessment.criteria.filter((row) => !row.rating && !row.approved).length, 41);
+  const rated = Object.values(output.chapters)
+    .flatMap((chapter) => chapter.criteria ?? [])
+    .flatMap((row) =>
+      row.components.flatMap((component) => (component.adherence ? [component.adherence] : [])),
+    );
+  assert.equal(rated.filter((row) => row.level === "partially-supports").length, 8);
+  assert.equal(rated.filter((row) => row.level === "supports").length, 1);
+  assert.ok(rated.every((row) => row.notes.startsWith("Reviewed interim conclusion")));
+  const files = artifacts(assessment);
+  assert.equal((files["conveyal-acr.md"].match(/ — reviewed interim/g) ?? []).length, 9);
+  assert.equal((files["conveyal-acr.md"].match(/Pending evidence — no rating/g) ?? []).length, 41);
+  for (const file of Object.values(files)) {
+    assert.doesNotMatch(
+      file,
+      /NEW EVIDENCE AWAITS RECONCILIATION|Provisional; qualified review pending/,
+    );
+    assert.match(file, /CC0-1.0/);
+  }
+  assert.match(files["conveyal-acr.md"], /Vendor:\*\* EBP, Inc\./);
+  assert.match(files["conveyal-acr.md"], /Author organization:\*\* EBP, Inc\./);
+  assert.match(files["conveyal-acr.md"], /Vendor approval:\*\* Not approved/);
+  assert.match(files["conveyal-acr.md"], /Publication date:\*\* Unpublished/);
+  assert.throws(() => exportOpenACR(assessment, true), /Unresolved/);
+  for (const row of assessment.criteria) {
+    row.rating = "supports";
+    row.approved = true;
+  }
+  assessment.qualifiedReviewApproved = true;
+  assert.throws(() => exportOpenACR(assessment, true), /vendor approval/);
+});
+
+test("unapproved conclusions or unreconciled evidence retain provisional labels despite report approval", () => {
+  const assessment = reviewedInterim();
+  assessment.criteria[0].approved = false;
+  assert.match(artifacts(assessment)["conveyal-acr.md"], /Partially Supports — provisional/);
+  assert.match(
+    exportOpenACR(assessment).chapters.success_criteria_level_a.criteria![0].components[0]
+      .adherence!.notes,
+    /Provisional/,
+  );
+  assessment.latestAudit!.reviewed = false;
+  const markdown = artifacts(assessment)["conveyal-acr.md"];
+  assert.match(markdown, /NEW EVIDENCE AWAITS RECONCILIATION/);
+  assert.doesNotMatch(markdown, / — reviewed interim/);
 });

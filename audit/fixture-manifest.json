@@ -1,9 +1,9 @@
 {
   "source": "conveyal/ui cypress/fixtures; TypeScript references maintained in ACR with formatting and documentation; other assets copied unchanged",
   "files": {
-    "analysis-settings.ts": "7a74d0e690de4162493c02939505d37c5561f7f81ab0b7522e5d0c2e952f56c3",
-    "regions/scratch-results.ts": "01fcf2727e734439660641664698cf48230075a1f64dd6b8c13c860dfec4aafd",
-    "regions/scratch.ts": "55e2c89dd6dc2a30669d235772c445195a1886aa01144efca5bacc6c9594f91d",
+    "analysis-settings.ts": "58f4f6db103b551c2f6af42a57bdd886d6f718e3e664f24dce02b252619067fb",
+    "regions/scratch-results.ts": "dbae461a4ce04ac33cd76676329098b0a9b6f9ad01e5c923f213a0d68dc184a1",
+    "regions/scratch.ts": "00586b8f17fa2bf1b623e0722ba817d5e45df5e98a04b26750f8ef8c530b3737",
     "regions/.gitignore": "515b0da19927d2aa0767dc2401f3f965e992c8d92d9454846f796acf05cae24c",
     "regions/download.sh": "2895e01338adf8902810cd888a4e9be200b7ac3ef70d163e63d1dd5588a9c3d8",
     "regions/portland/.gitignore": "928d0cdfeebd7af8afafa6688f59fe800e4923598ad2931bbee5341f3a2c8089",

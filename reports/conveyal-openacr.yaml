@@ -1,7 +1,7 @@
 author:
-  name: ""
-  email: ""
-  company_name: Conveyal
+  name: Trevor Gerhardt
+  email: trevor.gerhardt@ebp-us.com
+  company_name: EBP, Inc.
 catalog: wcag-2.1-vpat-2.5rev
 chapters:
   success_criteria_level_a:
@@ -12,9 +12,9 @@ chapters:
             adherence:
               level: partially-supports
               notes: >-
-                Provisional; qualified review pending. A11Y-007: Inspect all
-                map/chart equivalents and generated output; histogram
-                distribution failure is confirmed.
+                Reviewed interim conclusion; incomplete conformance evaluation.
+                A11Y-007: Inspect all map/chart equivalents and generated
+                output; histogram distribution failure is confirmed.
 
                 Evidence: ../evidence/README.md#artifact-4cc085621a05ce70,
                 ../evidence/README.md#artifact-af1a22ba0c65f0ad
@@ -35,9 +35,9 @@ chapters:
             adherence:
               level: partially-supports
               notes: >-
-                Provisional; qualified review pending. A11Y-003: Inspect
-                programmatic relationships, tables, groups, and chart
-                equivalents; label association failures observed.
+                Reviewed interim conclusion; incomplete conformance evaluation.
+                A11Y-003: Inspect programmatic relationships, tables, groups,
+                and chart equivalents; label association failures observed.
 
                 Evidence: ../evidence/README.md#artifact-ccce63fb49f3f3e2,
                 ../evidence/README.md#artifact-051f5f36a3fdbb9f,
@@ -64,10 +64,10 @@ chapters:
             adherence:
               level: partially-supports
               notes: >-
-                Provisional; qualified review pending. A11Y-006, A11Y-008,
-                A11Y-009: Polygon selection, feature inspection, and scrolling
-                barriers observed. Complete remaining workflows without a
-                pointer.
+                Reviewed interim conclusion; incomplete conformance evaluation.
+                A11Y-006, A11Y-008, A11Y-009: Polygon selection, feature
+                inspection, and scrolling barriers observed. Complete remaining
+                workflows without a pointer.
 
                 Evidence: ../evidence/README.md#artifact-c66d1af4edbd5307,
                 ../evidence/README.md#artifact-ccfaf9ba4397648c,
@@ -105,9 +105,9 @@ chapters:
             adherence:
               level: partially-supports
               notes: >-
-                Provisional; qualified review pending. A11Y-002: Unnamed
-                documentation links observed; assess all link purposes and
-                contexts.
+                Reviewed interim conclusion; incomplete conformance evaluation.
+                A11Y-002: Unnamed documentation links observed; assess all link
+                purposes and contexts.
 
                 Evidence: ../evidence/README.md#artifact-051f5f36a3fdbb9f,
                 ../evidence/README.md#artifact-7ec73c3a1c91b92a,
@@ -145,9 +145,9 @@ chapters:
             adherence:
               level: partially-supports
               notes: >-
-                Provisional; qualified review pending. A11Y-003: Unlabeled input
-                controls observed. Review remaining form instructions and
-                errors.
+                Reviewed interim conclusion; incomplete conformance evaluation.
+                A11Y-003: Unlabeled input controls observed. Review remaining
+                form instructions and errors.
 
                 Evidence: ../evidence/README.md#artifact-ccce63fb49f3f3e2,
                 ../evidence/README.md#artifact-051f5f36a3fdbb9f,
@@ -161,17 +161,18 @@ chapters:
           - name: web
             adherence:
               level: supports
-              notes: Provisional; qualified review pending. ITI template directs Supports for
-                WCAG 2.1 under the published errata; removed in WCAG 2.2.
+              notes: Reviewed interim conclusion; incomplete conformance evaluation. ITI
+                template directs Supports for WCAG 2.1 under the published
+                errata; removed in WCAG 2.2.
       - num: 4.1.2
         components:
           - name: web
             adherence:
               level: partially-supports
               notes: >-
-                Provisional; qualified review pending. A11Y-001, A11Y-002,
-                A11Y-003: Unnamed controls confirmed. Raw ARIA findings also
-                require semantic/AT review.
+                Reviewed interim conclusion; incomplete conformance evaluation.
+                A11Y-001, A11Y-002, A11Y-003: Unnamed controls confirmed. Raw
+                ARIA findings also require semantic/AT review.
 
                 Evidence: ../evidence/README.md#artifact-ccce63fb49f3f3e2,
                 ../evidence/README.md#artifact-051f5f36a3fdbb9f,
@@ -251,8 +252,9 @@ chapters:
       3.2.2: Pending evidence — Review select/input-triggered navigation and
       announcements.
 
-      3.3.1: Pending evidence — Invalid North=999 exposes aria-invalid;
-      error-text/announcement review remains pending.
+      3.3.1: Pending evidence — North=999 reverted to the original value after
+      blur, without retaining an invalid state. Error identification and
+      announcement remain unassessed; targeted validation testing is required.
   success_criteria_level_aa:
     criteria:
       - num: 1.2.4
@@ -273,9 +275,9 @@ chapters:
             adherence:
               level: partially-supports
               notes: >-
-                Provisional; qualified review pending. A11Y-004: Enabled text
-                failures measured. Review inactive exceptions and every
-                theme/state.
+                Reviewed interim conclusion; incomplete conformance evaluation.
+                A11Y-004: Enabled text failures measured. Review inactive
+                exceptions and every theme/state.
 
                 Evidence: ../evidence/README.md#artifact-051f5f36a3fdbb9f,
                 ../evidence/README.md#artifact-e7e09bf0a88c54fb,
@@ -296,9 +298,9 @@ chapters:
             adherence:
               level: partially-supports
               notes: >-
-                Provisional; qualified review pending. A11Y-005: 320 CSS-pixel
-                form clipping confirmed. Actual 400% zoom and remaining routes
-                need testing.
+                Reviewed interim conclusion; incomplete conformance evaluation.
+                A11Y-005: 320 CSS-pixel form clipping confirmed. Actual 400%
+                zoom and remaining routes need testing.
 
                 Evidence: ../evidence/README.md#artifact-de9708cca4706f82
 
@@ -397,33 +399,43 @@ chapters:
     disabled: true
     notes: AAA is outside this report.
 evaluation_methods_used: >-
-  axe-core 4.13.0; Cypress 13.4.0 / Electron 114; local browser
-  accessibility-tree inspection; limited keyboard checks; source review; 320
-  CSS-pixel viewport; dark-mode sample. No human VoiceOver, NVDA, JAWS or
-  TalkBack evaluation.
+  October 1, 2026 collection: Playwright Test 1.63.0, Chromium 153.0.8010.12,
+  axe-core 4.13.0, 36 scanned states, 15 automated keyboard/structure
+  observations with before/after accessibility snapshots, screenshots, 320
+  CSS-pixel reflow sample, and dark-mode sample. Eight observations passed and
+  seven failed; failed observations require interpretation, including bounds
+  validation and legend disclosure. Trevor Gerhardt reviewed the collected
+  material, reconciled findings, and approved nine rated conclusions within this
+  limited scope. No human VoiceOver, NVDA, JAWS, or TalkBack evaluation was
+  performed.
 
-  Evaluator qualifications: Pending qualified evaluator designation.
-notes: >-
-  Internal engineering baseline only; do not submit as a completed ACR.
-  Evaluated exclusively at http://localhost:3000 in local mode without
-  authentication. Proposed-release, authentication, complete-process,
-  documentation/training and human assistive-technology testing remain pending.
-  No conformance claim. Report date in drafts is the engineering evaluation
-  date, not a publication date.
-
-
-  NEW EVIDENCE AWAITS RECONCILIATION: acr-ebc598bf-5867-4ba3-89fe-ba7eac3925d4
-  collected at http://localhost:3000 on 2026-10-01T03:01:00.638Z. Criterion
-  ratings and approvals refer to the historical 2026-09-30 evaluation and were
-  not re-reviewed.
+  Evaluator qualifications: Not asserted for this interim assessment.
+notes: First reviewed interim audit, collection 2026-10-01.3, of
+  http://localhost:3000 in unauthenticated local mode. Trevor Gerhardt reviewed
+  the findings, scope, public distribution, and nine rated criterion
+  conclusions; 41 criteria remain unknown and unapproved. The collection
+  corroborates the nine existing GitHub findings and does not assert remediation
+  or new, resolved, or reopened findings. Disposable run-owned fixtures were
+  used; regional results completed and all 12 recorded resources were cleaned
+  up. The source checkout was aa60ece30cea92775f42a0e4b35d80f04be7c2bd and the
+  observed Next.js build was 6kwCYVezKwd_VVcUldOAW; build-to-commit identity is
+  not independently attested. The target requested R5 v7.6, but the functioning
+  local worker reported v7.5.1-11-g6f35542.dirty. Bounds validation and legend
+  disclosure remain uncertain observations. Authentication, customer-release
+  verification, complete-process coverage, documentation/training, and human
+  assistive-technology evaluation remain pending. Vendor approval is withheld
+  and qualified-evaluator credentials are not asserted. Public distribution is
+  approved under CC0-1.0; publication has not occurred. This limited interim
+  assessment is not a completed conformance evaluation or certification.
 product:
-  name: Conveyal UI / Conveyal Analysis
+  name: Conveyal Analysis
   version: aa60ece30cea92775f42a0e4b35d80f04be7c2bd; local build 6kwCYVezKwd_VVcUldOAW
   description: Browser application for editing transportation scenarios and
     inspecting accessibility analysis results
-report_date: 2026-09-30
-title: Conveyal Accessibility Conformance Report — INTERNAL DRAFT
+report_date: 2026-10-01
+title: Conveyal Analysis Accessibility Audit — Reviewed Interim Assessment
 vendor:
   email: ""
-  company_name: Conveyal
+  company_name: EBP, Inc.
 version: 1
+license: CC0-1.0
