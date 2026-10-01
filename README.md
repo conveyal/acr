@@ -95,17 +95,17 @@ Approve a reviewed interim assessment by setting `latestAudit.reviewed` and thes
 }
 ```
 
-Also approve and record `distributionLicense`. Unknown criteria may remain explicitly unknown. This approval does not satisfy the final ACR gates. Review content suitability before putting any sensitive material into a public PR, and separately review the raw bundle before publication. Configure GitHub branch protection to require PR approval and prohibit direct report changes on `main`; CLI checks cannot enforce repository settings.
+Also approve and record `distributionLicense`. Unknown criteria may remain explicitly unknown. This approval does not satisfy the final ACR gates. Review content suitability before putting any sensitive material into a public PR, and separately review the raw bundle before publication. Publication approval is recorded in `assessment.json`; a separate GitHub PR review is not required. Repository branch-protection settings are managed separately.
 
-### Publish after approval and merge
+### Publish after recorded assessment approval and merge
 
-Refresh preparation after the final review edits, obtain PR approval, and merge. Then run the **explicit publication command**:
+Refresh preparation after recording the final assessment review, then merge. Then run the **explicit publication command**:
 
 ```sh
 pnpm audit:release 2026-10-01.3
 ```
 
-It checks the merged PR, approval, review metadata, matching prepared commit and report contents, generated-report freshness, and downloaded bundle checksums. It tags the merged commit as `audit-2026-10-01.3` and publishes the finalized draft Release with reviewed change notes. The Release is labeled **reviewed interim assessment — incomplete conformance evaluation**. Failure preserves local evidence and permits retry. No merge or publication happens automatically.
+It checks the merged PR, recorded assessment approval, review metadata, matching prepared commit and report contents, generated-report freshness, and downloaded bundle checksums. It tags the merged commit as `audit-2026-10-01.3` and publishes the finalized draft Release with reviewed change notes. The Release is labeled **reviewed interim assessment — incomplete conformance evaluation**. Failure preserves local evidence and permits retry. No merge or publication happens automatically.
 
 `main` keeps current reviewed reports, findings, change notes, and a compact [evidence manifest](evidence/manifest.json) and index. Git records text changes. Raw JSON and screenshots are ignored and distributed with reports in Release bundles; downloaded reports have direct local evidence links. Repository reports link through the tracked evidence index to the dated Release.
 

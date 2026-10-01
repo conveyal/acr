@@ -247,9 +247,7 @@ function fixture() {
       headRefName: `audit/${id}`,
       headRefOid: state.sha,
       isDraft: false,
-      latestReviews: [{ state: "APPROVED" }],
       mergeCommit: { oid: state.sha },
-      reviewDecision: "APPROVED",
       state: "MERGED",
     });
   };
@@ -379,15 +377,12 @@ test("preparation refuses unrelated edits and published collections", async () =
     scenario.dispose();
   }
 });
-test("publication rejects unmerged, unapproved, or unprepared PR changes", async () => {
+test("publication rejects unmerged or unprepared PR changes", async () => {
   const scenario = fixture();
   try {
     await scenario.workflow.prepare(scenario.id);
     await assert.rejects(() => scenario.workflow.release(scenario.id), /must be merged/);
     await scenario.approve();
-    scenario.state.pr!.latestReviews = [];
-    await assert.rejects(() => scenario.workflow.release(scenario.id), /PR approval/);
-    scenario.state.pr!.latestReviews = [{ state: "APPROVED" }];
     scenario.state.pr!.headRefOid = "f".repeat(40);
     await assert.rejects(() => scenario.workflow.release(scenario.id), /unprepared changes/);
     assert.equal(scenario.state.release!.draft, true);
@@ -395,7 +390,7 @@ test("publication rejects unmerged, unapproved, or unprepared PR changes", async
     scenario.dispose();
   }
 });
-test("reviewed interim publication allows unknown ratings but verifies approval, merged files and bundle", async () => {
+test("recorded interim approval permits publication without GitHub reviews, while verifying merged files and bundle", async () => {
   const scenario = fixture();
   try {
     await scenario.workflow.prepare(scenario.id);

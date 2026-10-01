@@ -131,7 +131,7 @@ test("binary assets preserve bytes and octet-stream response parsing through the
   }
 });
 
-test("GraphQL review lookup flattens latest review nodes and supplies repository variables", async () => {
+test("GraphQL PR lookup reads merged revision and supplies repository variables", async () => {
   const pr = {
     url: "https://github.com/conveyal/acr/pull/23",
     number: 23,
@@ -141,17 +141,15 @@ test("GraphQL review lookup flattens latest review nodes and supplies repository
     headRefName: "audit/fixture",
     headRefOid: "abc123",
     mergeCommit: { oid: "def456" },
-    reviewDecision: null,
-    latestReviews: { nodes: [{ state: "APPROVED" }, { state: "COMMENTED" }] },
   };
   const { client, requests } = transport(() => json({ data: { repository: { pullRequest: pr } } }));
   const result = await client.readPullRequest("conveyal/acr", 23);
   const { url, ...fields } = pr;
-  assert.deepEqual(result, { ...fields, html_url: url, latestReviews: pr.latestReviews.nodes });
+  assert.deepEqual(result, { ...fields, html_url: url });
   const payload = JSON.parse(String(requests[0].body));
   assert.deepEqual(payload.variables, { owner: "conveyal", repo: "acr", number: 23 });
   assert.match(payload.query, /number url state/);
-  assert.match(payload.query, /latestReviews\(first: 100\)/);
+  assert.match(payload.query, /mergeCommit \{ oid \}/);
 });
 
 test("write failures and lost responses are sent once without automatic retries", async () => {

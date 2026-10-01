@@ -108,13 +108,12 @@ export function octokitClient(client: Octokit): GitHubClient {
       return (await client.rest.pulls.update({ ...repository(repo), pull_number: number, body }))
         .data;
     },
-    /** Read merged revision and latest reviewer decisions used by the explicit publication gates. */
+    /** Read the merged revision and prepared branch identity used by publication gates. */
     async readPullRequest(repo, number) {
       const result = await client.graphql<{
         repository: {
-          pullRequest: Omit<PullRequest, "latestReviews" | "html_url"> & {
+          pullRequest: Omit<PullRequest, "html_url"> & {
             url: string;
-            latestReviews: { nodes: { state: string }[] };
           };
         };
       }>(
@@ -123,15 +122,14 @@ export function octokitClient(client: Octokit): GitHubClient {
           repository(owner: $owner, name: $repo) {
             pullRequest(number: $number) {
               number url state isDraft baseRefName headRefName headRefOid
-              mergeCommit { oid } reviewDecision
-              latestReviews(first: 100) { nodes { state } }
+              mergeCommit { oid }
             }
           }
         }`,
         { ...repository(repo), number },
       );
-      const { url, latestReviews, ...pr } = result.repository.pullRequest;
-      return { ...pr, html_url: url, latestReviews: latestReviews.nodes };
+      const { url, ...pr } = result.repository.pullRequest;
+      return { ...pr, html_url: url };
     },
     async uploadAsset(repo, release, file) {
       const bytes = fs.readFileSync(file);

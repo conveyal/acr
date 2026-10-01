@@ -14,7 +14,7 @@ export type Release = Pick<
   SDKRelease,
   "id" | "tag_name" | "target_commitish" | "name" | "body" | "draft" | "html_url"
 > & { assets: ReleaseAsset[] };
-/** PR fields shared between REST preparation and GraphQL merged-review checks. */
+/** PR fields shared between REST preparation and GraphQL merged-revision checks. */
 export interface PullRequest {
   number: number;
   html_url: string;
@@ -24,8 +24,6 @@ export interface PullRequest {
   headRefName?: string;
   headRefOid?: string;
   mergeCommit?: { oid: string };
-  reviewDecision?: string | null;
-  latestReviews?: { state: string }[];
 }
 export interface ReviewContext {
   id: string;

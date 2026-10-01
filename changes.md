@@ -27,4 +27,4 @@ Findings reconciliation, scope, public distribution, and nine rated criterion co
 
 Vendor approval remains withheld; qualified-evaluator credentials are not asserted. Authentication, customer-release verification, complete-process testing, documentation/training, and human assistive-technology coverage remain pending. No remediation, completed conformance certification, or vendor commitment is implied.
 
-Publication has not occurred. Refresh the review bundle, obtain approval of the latest GitHub PR revision, and merge before invoking explicit publication. The Release must remain labeled a reviewed interim assessment with explicit unknowns.
+Publication has not occurred. Refresh the review bundle after recording assessment approval, then merge before invoking explicit publication. The Release must remain labeled a reviewed interim assessment with explicit unknowns.

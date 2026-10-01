@@ -266,12 +266,6 @@ export class ReviewWorkflow {
     ) {
       throw Error("The prepared review PR must be merged into main without unprepared changes");
     }
-    if (
-      pr.reviewDecision === "CHANGES_REQUESTED" ||
-      !pr.latestReviews?.some((review) => review.state === "APPROVED")
-    ) {
-      throw Error("PR approval is required");
-    }
     const sha = pr.mergeCommit.oid;
     this.git("fetch", "origin", "main");
     this.git("merge-base", "--is-ancestor", sha, "origin/main");
